@@ -1,0 +1,30 @@
+[project]
+name = "fc-workshop-track-2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "crewai>=0.126.0",
+    "crewai-tools>=0.0.1",
+    "fastapi>=0.115.9",
+    "ipykernel>=6.29.5",
+    "jupyter>=1.1.1",
+    "jupytext>=1.17.2",
+    "langchain>=0.3.25",
+    "langchain-community>=0.3.24",
+    "langchain-openai>=0.3.21",
+    "litellm>=1.68.0",
+    "loguru>=0.7.3",
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.0",
+    "openai>=1.75.0",
+    "pandas>=2.3.0",
+    "pydantic>=2.11.5",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.4",
+    "rich>=13.9.4",
+    "tenacity>=9.1.2",
+    "uvicorn>=0.34.3",
+    "weave>=0.51.53",
+]
