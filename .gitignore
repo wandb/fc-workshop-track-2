@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 workshop_experiment_results.json
+*.ipynb

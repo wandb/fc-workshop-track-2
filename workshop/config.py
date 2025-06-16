@@ -23,14 +23,14 @@ class VerbosityLevel(str, Enum):
 
 # Default configuration
 DEFAULT_CONFIG = {
-    "verbosity": VerbosityLevel.DEBUG,
-    "log_to_file": True,
+    "verbosity": VerbosityLevel.MINIMAL,
+    "log_to_file": False,
     "log_file": "sentinel_grid.log",
-    "show_commands": True,
-    "show_api_calls": True,
+    "show_commands": False,
+    "show_api_calls": False,
     "show_progress_bars": True,
     "show_panels": True,
-    "show_states": True,  # Default to not showing states
+    "show_states": False,  # Default to not showing states
     "use_rich_formatting": True,
     "service_ports": {
         "grid": 8002,

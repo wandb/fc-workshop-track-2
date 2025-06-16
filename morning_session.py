@@ -142,6 +142,7 @@ Phase 7: Workshop Summary & Production Insights
 ---
 """
 
+# %%
 # All imports moved to top of file
 import json
 import requests
@@ -256,6 +257,7 @@ console.print(Panel(
     border_style="blue"
 ))
 
+# %%
 # Infrastructure setup for multi-agent systems testing
 # 🎓 PRINCIPLE: Agents need reliable service infrastructure for coordination
 environment_ok = check_environment()
@@ -288,7 +290,7 @@ console.print(Panel(
     title="Interactive Service Discovery",
     border_style="green"
 ))
-
+# %%
 def create_heat_wave_scenario():
     """
     🎓 EDUCATIONAL PURPOSE: Create crisis scenario with dynamic resource discovery.
@@ -512,46 +514,7 @@ def create_heat_wave_scenario():
             "traffic": 0.1
         }
     )
-
-
-# Educational: Create the scenario with actual service IDs for realistic testing
-HEAT_WAVE_SCENARIO = create_heat_wave_scenario()
-
-console.print(Panel(
-    HEAT_WAVE_SCENARIO.description, 
-    title=f"📋 Crisis Briefing: {HEAT_WAVE_SCENARIO.name}", 
-    border_style="red"
-))
-
-# Educational: Activate scenario across all services for multi-agent testing
-if 'services_running' in locals() and services_running:
-    scenario_activated = activate_scenario(HEAT_WAVE_SCENARIO, 
-                                         "Heat Wave Crisis")
-    if scenario_activated:
-        verify_scenario_state(HEAT_WAVE_SCENARIO, "Heat Wave Crisis")
-    else:
-        console.print("[yellow]⚠️ Scenario activation had issues, but "
-                     "continuing with workshop...[/yellow]")
-
-# Educational: Get initial system status for comparison baseline
-initial_status = get_system_status()
-console.print(Panel(
-    json.dumps(initial_status, indent=2), 
-    title="📊 Initial System Status", 
-    border_style="cyan"
-))
-
-# Educational: Save Phase 1 results for systematic comparison
-workshop_results["phase_1"] = {
-    "environment_ok": environment_ok,
-    "services_running": services_running,
-    "scenario_activated": scenario_activated,
-    "initial_status": initial_status
-}
-save_experiment_results(workshop_results)
-
-console.print("✅ Phase 1 Complete: Environment setup and scenario definition ready")
-
+# %%
 # 🎓 EDUCATIONAL DEMONSTRATION: Create scenario with actual service IDs for realistic testing
 console.print("\n🎓 **CREATING DYNAMIC CRISIS SCENARIO**")
 console.print("📚 **Learning Focus**: How agents work with real, changing resource constraints")
@@ -623,6 +586,7 @@ workshop_results["phase_1"] = {
 }
 save_experiment_results(workshop_results)
 
+# %%
 console.print(Panel(
     "✅ **PHASE 1 COMPLETE: Environment Setup & Service Discovery**\n\n"
     "🎓 **What You've Learned:**\n"
@@ -912,23 +876,7 @@ Use only the actual resource IDs provided in the system context and the valid ac
     
     return actions, success_rate
 
-
-# Educational: Test the naive approach with proper scenario definition
-console.print(Panel("🧪 Phase 2: Testing Naive LLM Approach", border_style="yellow"))
-
-console.print(Panel(
-    f"{HEAT_WAVE_SCENARIO.name}: {HEAT_WAVE_SCENARIO.description}", 
-    title="🧪 Testing Naive LLM Approach with ScenarioDefinition", 
-    border_style="cyan"
-))
-
-# Educational: Reset and activate scenario for clean test
-activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - LLM Test")
-
-llm_actions, llm_success_rate = naive_llm_approach(HEAT_WAVE_SCENARIO)
-
-console.print("✅ Phase 2 Complete: Naive LLM approach baseline established")
-
+# %%
 # 🎓 EDUCATIONAL EXPERIMENT: Test the naive approach with proper scenario definition
 console.print(Panel(
     "🧪 **PHASE 2 EXPERIMENT: Testing Naive LLM Approach**\n\n"
@@ -938,19 +886,6 @@ console.print(Panel(
     "why we need specialized multi-agent architectures\n\n"
     "🔬 **Method**: Comprehensive prompting + structured output + real-time data",
     title="Phase 2: Experimental Design",
-    border_style="cyan"
-))
-
-console.print(Panel(
-    f"📋 **TESTING SCENARIO**\n"
-    f"**Name**: {HEAT_WAVE_SCENARIO.name}\n"
-    f"**Challenge**: {HEAT_WAVE_SCENARIO.description}\n\n"
-    f"🎓 **Why This Scenario Tests LLM Limits**:\n"
-    f"• Requires coordination across 3 different service domains\n"
-    f"• Involves real resource constraints and availability\n"
-    f"• Demands prioritization with competing objectives\n"
-    f"• Tests ability to generate executable, coordinated actions",
-    title="Scenario Analysis for LLM Testing", 
     border_style="cyan"
 ))
 
@@ -1246,7 +1181,7 @@ def explore_grid_service():
 console.print(Panel("🔍 Phase 3A: Grid Service Investigation", border_style="blue"))
 explore_grid_service()
 
-
+# %%
 # A. Rule-Based Grid Management
 class GridRuleBasedManager:
     """Rule-based approach for grid management - heat wave specific."""
@@ -1283,7 +1218,7 @@ class GridRuleBasedManager:
         
         return commands
 
-
+# %%
 # B. Agent-Based Grid Management with Dynamic Tools
 def create_grid_zone_adjustment_tool():
     """Create GridZoneAdjustmentTool with dynamic description."""
@@ -1326,7 +1261,7 @@ def create_grid_zone_adjustment_tool():
 
     return DynamicGridZoneAdjustmentTool()
 
-
+# %%
 def create_infrastructure_priority_tool():
     """Create InfrastructurePriorityTool with dynamic description."""
     try:
@@ -1377,7 +1312,7 @@ def create_infrastructure_priority_tool():
 
     return DynamicInfrastructurePriorityTool()
 
-
+# %%
 def create_drone_assignment_tool():
     """Create DroneAssignmentTool with dynamic description based on actual service IDs."""
     actual_ids = get_actual_service_ids()
@@ -1410,7 +1345,7 @@ def create_drone_assignment_tool():
 
     return DynamicDroneAssignmentTool()
 
-
+# %%
 def create_incident_update_tool():
     """Create IncidentUpdateTool with dynamic description based on actual service IDs."""
     actual_ids = get_actual_service_ids()
@@ -1442,7 +1377,7 @@ def create_incident_update_tool():
 
     return DynamicIncidentUpdateTool()
 
-
+# %%
 def create_traffic_redirection_tool():
     """Create TrafficRedirectionTool with dynamic description based on actual service IDs."""
     actual_ids = get_actual_service_ids()
@@ -1472,7 +1407,7 @@ def create_traffic_redirection_tool():
 
     return DynamicTrafficRedirectionTool()
 
-
+# %%
 def create_route_blocking_tool():
     """Create RouteBlockingTool with dynamic description based on actual service IDs."""
     actual_ids = get_actual_service_ids()
@@ -1506,7 +1441,7 @@ def create_route_blocking_tool():
     
     return DynamicRouteBlockingTool()
 
-
+# %%
 # Create Grid Agent
 def create_grid_agent():
     """Create the Grid Management Specialist Agent with dynamic context."""
@@ -1545,7 +1480,7 @@ def create_grid_agent():
     
     return grid_specialist
 
-
+# %%
 def create_grid_task(grid_agent):
     """Create a task specifically for the Grid agent with dynamic context."""
     actual_ids = get_actual_service_ids()
@@ -1579,7 +1514,7 @@ def create_grid_task(grid_agent):
     
     return grid_task
 
-
+# %%
 # Test Grid Service: Rules vs Agent
 console.print(Panel("⚖️ Grid Service: Rules vs Agent Testing", border_style="yellow"))
 
@@ -1622,7 +1557,7 @@ for i, command in enumerate(grid_rule_commands, 1):
 grid_rule_success_rate = (sum(grid_rule_results) / len(grid_rule_results) 
                          if grid_rule_results else 0)
 
-# FIXED: Use same evaluation method for fair comparison
+# %%
 console.print("📊 Evaluating grid rules with scenario-based method...")
 grid_rule_command_dicts = []
 for cmd in grid_rule_commands:
@@ -1641,6 +1576,7 @@ grid_rule_evaluation = evaluate_scenario_commands(
 )
 grid_rule_success_rate = grid_rule_evaluation.get('overall_score', grid_rule_success_rate)
 
+# %%
 # Test 2: Grid Agent-Based Manager
 console.print("\n🤖 Testing Grid Agent-Based Management")
 reset_all_service_states()
@@ -1674,7 +1610,7 @@ grid_agent_success_rate, grid_agent_commands, grid_agent_evaluation = convert_an
 console.print(f"📊 Grid Rules: {grid_rule_success_rate:.1%} ({sum(grid_rule_results)}/{len(grid_rule_results)})")
 console.print(f"📊 Grid Agent: {grid_agent_success_rate:.1%} (using proper agent evaluation)")
 
-
+# %%
 # Store Grid service results using actual agent commands
 workshop_results["service_investigation"]["grid"] = {
     "rule_success_rate": grid_rule_success_rate,
@@ -1690,6 +1626,7 @@ workshop_results["service_investigation"]["grid"] = {
 }
 save_experiment_results(workshop_results)
 
+# %%
 # Grid Service Comparison
 console.print(Panel(
     f"⚖️ **Grid Service: Rules vs Agent Comparison**\n\n"
@@ -1760,7 +1697,7 @@ class EmergencyRuleBasedManager:
         
         return commands
 
-
+# %%
 # Emergency Tools and Agent (condensed implementation)
 def create_emergency_tools_and_agent():
     """Create emergency management tools and agent."""
@@ -1790,7 +1727,7 @@ def create_emergency_tools_and_agent():
     
     return emergency_agent
 
-
+# %%
 # Test Emergency Service: Rules vs Agent (condensed)
 console.print(Panel("🚁 Phase 3B: Emergency Service Investigation", border_style="red"))
 
@@ -1818,6 +1755,7 @@ for command in emergency_rule_commands:
 emergency_rule_success_rate = (sum(emergency_rule_results) / len(emergency_rule_results) 
                                if emergency_rule_results else 0)
 
+# %%
 # Use same evaluation method as agents for fair comparison
 console.print("📊 Evaluating emergency rules with scenario-based method...")
 emergency_rule_command_dicts = []
@@ -1837,6 +1775,7 @@ emergency_rule_evaluation = evaluate_scenario_commands(
 )
 emergency_rule_success_rate = emergency_rule_evaluation.get('overall_score', emergency_rule_success_rate)
 
+# %%
 # Test Emergency Agent - use proper agent evaluation
 console.print("\n🤖 Testing Emergency Agent-Based Management")
 reset_all_service_states()
@@ -1892,6 +1831,7 @@ emergency_agent_success_rate, emergency_agent_commands, emergency_agent_evaluati
 console.print(f"📊 Emergency Rules: {emergency_rule_success_rate:.1%} ({sum(emergency_rule_results)}/{len(emergency_rule_results)})")
 console.print(f"📊 Emergency Agent: {emergency_agent_success_rate:.1%} (using proper agent evaluation)")
 
+# %%
 # Store Emergency results
 workshop_results["service_investigation"]["emergency"] = {
     "rule_success_rate": emergency_rule_success_rate,
@@ -1927,7 +1867,7 @@ Final service investigation following the same pattern
 """
 
 # %%
-# Traffic Service (condensed implementation)
+# Traffic Service
 class TrafficRuleBasedManager:
     """Rule-based traffic management for heat wave scenarios."""
     
@@ -1988,8 +1928,8 @@ def create_traffic_agent():
     
     return traffic_agent
 
-
-# Test Traffic Service: Rules vs Agent (condensed)
+# %%
+# Test Traffic Service: Rules vs Agent 
 console.print(Panel("🚦 Phase 3C: Traffic Service Investigation", border_style="cyan"))
 
 traffic_rule_manager = TrafficRuleBasedManager()
@@ -2015,6 +1955,7 @@ for command in traffic_rule_commands:
 traffic_rule_success_rate = (sum(traffic_rule_results) / len(traffic_rule_results) 
                              if traffic_rule_results else 0)
 
+# %%
 # Use same evaluation method as agents for fair comparison
 console.print("📊 Evaluating traffic rules with scenario-based method...")
 traffic_rule_command_dicts = []
@@ -2034,7 +1975,7 @@ traffic_rule_evaluation = evaluate_scenario_commands(
 )
 traffic_rule_success_rate = traffic_rule_evaluation.get('overall_score', traffic_rule_success_rate)
 
-# Test Traffic Agent - use proper agent evaluation  
+# %%
 console.print("\n🤖 Testing Traffic Agent-Based Management")
 reset_all_service_states()
 activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Traffic Agent Test")
@@ -2075,6 +2016,7 @@ traffic_agent_result = traffic_crew.kickoff(inputs={
     "scenario_description": HEAT_WAVE_SCENARIO.description
 })
 
+# %%
 # Use agent converter to properly evaluate traffic agent results
 console.print("📊 Evaluating traffic agent with proper agent converter...")
 traffic_agent_success_rate, traffic_agent_commands, traffic_agent_evaluation = convert_and_evaluate_agent_commands(
@@ -2086,6 +2028,7 @@ traffic_agent_success_rate, traffic_agent_commands, traffic_agent_evaluation = c
 console.print(f"📊 Traffic Rules: {traffic_rule_success_rate:.1%} ({sum(traffic_rule_results)}/{len(traffic_rule_results)})")
 console.print(f"📊 Traffic Agent: {traffic_agent_success_rate:.1%} (using proper agent evaluation)")
 
+# %%
 # Store Traffic results
 workshop_results["service_investigation"]["traffic"] = {
     "rule_success_rate": traffic_rule_success_rate,
@@ -2181,7 +2124,6 @@ class HeatWaveRuleBasedSystem:
         
         return all_commands, success_rate
 
-
 # Complete Agent System with Manager
 def create_crisis_manager_agent():
     """Create a manager agent that coordinates specialist agents."""
@@ -2263,7 +2205,7 @@ def create_agent_system():
     
     return agent_crew
 
-
+# %%
 # Test Complete Systems
 console.print(Panel("🤝 Phase 4: Full System Comparison", border_style="yellow"))
 
@@ -2275,7 +2217,6 @@ activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Full Rules Test")
 rule_based_system = HeatWaveRuleBasedSystem()
 rule_commands, rule_success_rate = rule_based_system.solve_heat_wave_crisis()
 
-# FIXED: Use same evaluation method as agents for fair comparison
 console.print("📊 Evaluating rule-based system with same method as agents...")
 rule_command_dicts = []
 for cmd in rule_commands:
@@ -2303,6 +2244,7 @@ console.print(Panel(
     border_style="blue"
 ))
 
+# %%
 # Test 2: Complete Agent System
 console.print("\n🤖 Testing Complete Agent System")
 reset_all_service_states()
@@ -2615,7 +2557,7 @@ def test_adaptability():
     
     return final_score, medical_rule_success
 
-
+# %%
 console.print("🔍 Running adaptability challenge...")
 agent_medical_score, rule_medical_score = test_adaptability()
 console.print("✅ Phase 5 Complete: Adaptability challenge finished")
@@ -2707,7 +2649,7 @@ class PredictiveAnalyticsTool(BaseTool):
         return f"FORECAST: {predictions['grid_stability_forecast']}. Predicted {predictions['new_incidents_predicted']} new incidents. {predictions['resource_shortage_risk']}. Evacuation window: {predictions['optimal_evacuation_window']}"
 
 
-# MCP Registry that can discover new services at runtime
+# %%
 class DynamicMCPRegistry:
     """
     True MCP registry that discovers external services at runtime.
@@ -2787,7 +2729,6 @@ class DynamicMCPRegistry:
                 "discovered": list(set(tool["category"] for tool in self.discovered_tools.values()))
             }
         }
-
 
 def demonstrate_mcp_value():
     """Demonstrate the value of MCP for production systems."""
@@ -3013,7 +2954,7 @@ that grow with their environment - essential for production resilience!""",
     
     return dynamic_mcp
 
-
+# %%
 # Demonstrate MCP
 mcp_registry = demonstrate_mcp_value()
 
