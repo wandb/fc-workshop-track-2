@@ -566,4 +566,4 @@ class CommandExecutor:
             raise ValueError(f"Missing required path parameter: {e}")
         
         # Return endpoint, method, and body parameters
-        return endpoint, method, params_copy 
+        return endpoint, method, params_copy

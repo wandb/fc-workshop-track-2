@@ -1,153 +1,136 @@
-#!/usr/bin/env python3
-# ---
-# jupyter:
-#   jupytext:
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#       format_version: '1.3'
-#       jupytext_version: 1.15.2
-#   kernelspec:
-#     display_name: Python 3
-#     language: python
-#     name: python3
-# ---
-
 # %% [markdown]
-"""
-# 🤖 **Agentic AI Systems Workshop: From Rules to Adaptive Multi-Agent Systems**
-
-## ⏰ **WORKSHOP SCHEDULE (3 Hours Total)**
-
-### **Part 1: Foundation & Understanding (75 minutes)**
-- **Phase 1**: Environment Setup & Service Discovery (15 min)
-- **Phase 2**: Naive LLM Chain Analysis (20 min)
-- **🛠️ HANDS-ON**: Experiment with single-agent approaches (15 min)
-- **💬 DISCUSSION**: Why do LLM chains fail for complex coordination? (10 min)
-- **Phase 3**: Service-by-Service Investigation (15 min)
-
-### **☕ COFFEE BREAK (10 minutes)**
-
-### **Part 2: Multi-Agent Development (75 minutes)**
-- **Phase 4**: Building Specialized Agents (Grid, Emergency, Traffic) (25 min)
-- **🛠️ HANDS-ON**: Create your own agent specializations (15 min)
-- **Phase 5**: Multi-Agent Coordination & Orchestration (20 min)
-- **🛠️ HANDS-ON**: Experiment with crew configurations (10 min)
-- **Phase 6**: Adaptability Challenge & Testing (5 min)
-
-### **Part 3: Advanced Integration (20 minutes)**
-- **Phase 7**: Model Context Protocol (MCP) Demo (10 min)
-- **Phase 8**: Production Insights & Wrap-up (10 min)
-
----
-
-## 🎯 **Workshop Learning Objectives**
-
-In this session, you will learn how to design and orchestrate agentic AI 
-systems using modern frameworks, standards, and best practices. We will cover 
-foundational design principles such as tool use, task planning, autonomy, and 
-multi-agent collaboration, and introduce techniques for integrating external 
-systems dynamically.
-
-You'll also explore how emerging standards like the Model Context Protocol 
-(MCP) simplify how agents discover and use external tools, making agentic 
-systems more adaptable and extensible. Practical examples will demonstrate 
-how to build autonomous agents that make decisions, invoke tools, and 
-accomplish complex tasks without rigid pre-programmed flows.
-
-## 🎓 **What You'll Build Today**
-
-By the end of this workshop, you will have:
-
-1. **🏗️ Understanding of Agent System Architecture**: Learn the fundamental 
-   differences between rule-based systems, simple LLM chains, and 
-   multi-agent systems
-2. **🛠️ Mastery of Tool Design Patterns**: Create specialized tools with 
-   dynamic descriptions and structured outputs
-3. **🎭 Service-Specific Agent Development**: Build domain experts for Grid, 
-   Emergency, and Traffic management
-4. **🤝 Multi-Agent Orchestration Skills**: Compose individual agents into 
-   coordinated teams
-5. **🧠 Adaptive Behavior Implementation**: Build systems that reason about 
-   new scenarios vs rigid rules
-6. **🔌 External System Integration**: Use Model Context Protocol (MCP) for 
-   dynamic tool discovery
-7. **📊 System Performance Evaluation**: Quantitatively compare different 
-   approaches
-
-## 🛠️ **Interactive Notebook Format**
-
-This workshop is designed for **Jupyter notebook interaction**! Each section 
-contains:
-
-- **📝 Markdown cells** with educational content and step-by-step instructions
-- **👨‍💻 Code cells** with modular components you can modify and experiment with
-- **🛠️ Interactive exercises** to build understanding through hands-on practice
-- **💬 Discussion prompts** for reflection and collaborative learning
-- **📊 Evaluation cells** showing quantitative performance comparisons
-
-### **🎯 LEARNING PROGRESSION**
-Throughout the workshop, you'll progress through:
-- **Understanding**: Why existing approaches fail for complex coordination
-- **Building**: Creating specialized tools and agents for each service domain
-- **Integrating**: Orchestrating multiple agents into coordinated systems
-- **Evaluating**: Measuring and comparing different architectural approaches
-- **Extending**: Adding dynamic capabilities through MCP integration
-
-## 🏛️ **Workshop Architecture Overview**
-
-```
-Phase 1: Environment Setup & Service Discovery
-    ├── Smart city simulation initialization
-    ├── Service API exploration and understanding
-    └── Crisis scenario creation with dynamic resource discovery
-
-Phase 2: Naive LLM Chain Approach Analysis
-    ├── Single LLM approach implementation
-    ├── Performance measurement and limitation identification
-    └── Educational analysis of why sophisticated prompting isn't enough
-
-Phase 3: Service-by-Service Investigation & Tool Development
-    ├── 3A: Grid Service (Rules → Tools → Agent)
-    ├── 3B: Emergency Service (Rules → Tools → Agent)
-    └── 3C: Traffic Service (Rules → Tools → Agent)
-
-Phase 4: Full System Comparison & Multi-Agent Orchestration
-    ├── 4A: Complete Rule-Based System Integration
-    └── 4B: Complete Agent System (Manager + Specialists)
-
-Phase 5: Adaptability Challenge & Scenario Testing
-    ├── New scenario introduction (medical emergency)
-    └── Adaptability assessment and comparison
-
-Phase 6: Model Context Protocol (MCP) Integration
-    ├── Dynamic tool discovery simulation
-    ├── Runtime capability enhancement
-    └── Production-ready extensibility patterns
-
-Phase 7: Workshop Summary & Production Insights
-    ├── Performance comparison across all approaches
-    ├── Production deployment considerations
-    └── Future directions and advanced techniques
-```
-
-## 🔑 **Key Educational Principles**
-
-- **🔍 Incremental Complexity**: Build understanding step-by-step from simple to complex
-- **⚖️ Comparative Analysis**: Rules vs Agents at each step with quantitative measures
-- **📊 Evidence-Based Learning**: Measure what you build with objective metrics
-- **🧪 Hypothesis-Driven Development**: Predict outcomes, then verify with experiments
-- **🚀 Production-Ready Patterns**: Real-world integration and deployment strategies
-
----
-"""
+# # 🤖 **Agentic AI Systems Workshop: From Rules to Adaptive Multi-Agent Systems**
+# 
+# ## ⏰ **WORKSHOP SCHEDULE (3 Hours Total)**
+# 
+# ### **Part 1: Foundation & Understanding (75 minutes)**
+# - **Phase 1**: Environment Setup & Service Discovery (15 min)
+# - **Phase 2**: Naive LLM Chain Analysis (20 min)
+# - **🛠️ HANDS-ON**: Experiment with single-agent approaches (15 min)
+# - **💬 DISCUSSION**: Why do LLM chains fail for complex coordination? (10 min)
+# - **Phase 3**: Service-by-Service Investigation (15 min)
+# 
+# ### **☕ COFFEE BREAK (10 minutes)**
+# 
+# ### **Part 2: Multi-Agent Development (75 minutes)**
+# - **Phase 4**: Building Specialized Agents (Grid, Emergency, Traffic) (25 min)
+# - **🛠️ HANDS-ON**: Create your own agent specializations (15 min)
+# - **Phase 5**: Multi-Agent Coordination & Orchestration (20 min)
+# - **🛠️ HANDS-ON**: Experiment with crew configurations (10 min)
+# - **Phase 6**: Adaptability Challenge & Testing (5 min)
+# 
+# ### **Part 3: Advanced Integration (20 minutes)**
+# - **Phase 7**: Model Context Protocol (MCP) Demo (10 min)
+# - **Phase 8**: Production Insights & Wrap-up (10 min)
+# 
+# ---
+# 
+# ## 🎯 **Workshop Learning Objectives**
+# 
+# In this session, you will learn how to design and orchestrate agentic AI 
+# systems using modern frameworks, standards, and best practices. We will cover 
+# foundational design principles such as tool use, task planning, autonomy, and 
+# multi-agent collaboration, and introduce techniques for integrating external 
+# systems dynamically.
+# 
+# You'll also explore how emerging standards like the Model Context Protocol 
+# (MCP) simplify how agents discover and use external tools, making agentic 
+# systems more adaptable and extensible. Practical examples will demonstrate 
+# how to build autonomous agents that make decisions, invoke tools, and 
+# accomplish complex tasks without rigid pre-programmed flows.
+# 
+# ## 🎓 **What You'll Build Today**
+# 
+# By the end of this workshop, you will have:
+# 
+# 1. **🏗️ Understanding of Agent System Architecture**: Learn the fundamental 
+#    differences between rule-based systems, simple LLM chains, and 
+#    multi-agent systems
+# 2. **🛠️ Mastery of Tool Design Patterns**: Create specialized tools with 
+#    dynamic descriptions and structured outputs
+# 3. **🎭 Service-Specific Agent Development**: Build domain experts for Grid, 
+#    Emergency, and Traffic management
+# 4. **🤝 Multi-Agent Orchestration Skills**: Compose individual agents into 
+#    coordinated teams
+# 5. **🧠 Adaptive Behavior Implementation**: Build systems that reason about 
+#    new scenarios vs rigid rules
+# 6. **🔌 External System Integration**: Use Model Context Protocol (MCP) for 
+#    dynamic tool discovery
+# 7. **📊 System Performance Evaluation**: Quantitatively compare different 
+#    approaches
+# 
+# ## 🛠️ **Interactive Notebook Format**
+# 
+# This workshop is designed for **Jupyter notebook interaction**! Each section 
+# contains:
+# 
+# - **📝 Markdown cells** with educational content and step-by-step instructions
+# - **👨‍💻 Code cells** with modular components you can modify and experiment with
+# - **🛠️ Interactive exercises** to build understanding through hands-on practice
+# - **💬 Discussion prompts** for reflection and collaborative learning
+# - **📊 Evaluation cells** showing quantitative performance comparisons
+# 
+# ### **🎯 LEARNING PROGRESSION**
+# Throughout the workshop, you'll progress through:
+# - **Understanding**: Why existing approaches fail for complex coordination
+# - **Building**: Creating specialized tools and agents for each service domain
+# - **Integrating**: Orchestrating multiple agents into coordinated systems
+# - **Evaluating**: Measuring and comparing different architectural approaches
+# - **Extending**: Adding dynamic capabilities through MCP integration
+# 
+# ## 🏛️ **Workshop Architecture Overview**
+# 
+# ```
+# Phase 1: Environment Setup & Service Discovery
+#     ├── Smart city simulation initialization
+#     ├── Service API exploration and understanding
+#     └── Crisis scenario creation with dynamic resource discovery
+# 
+# Phase 2: Naive LLM Chain Approach Analysis
+#     ├── Single LLM approach implementation
+#     ├── Performance measurement and limitation identification
+#     └── Educational analysis of why sophisticated prompting isn't enough
+# 
+# Phase 3: Service-by-Service Investigation & Tool Development
+#     ├── 3A: Grid Service (Rules → Tools → Agent)
+#     ├── 3B: Emergency Service (Rules → Tools → Agent)
+#     └── 3C: Traffic Service (Rules → Tools → Agent)
+# 
+# Phase 4: Full System Comparison & Multi-Agent Orchestration
+#     ├── 4A: Complete Rule-Based System Integration
+#     └── 4B: Complete Agent System (Manager + Specialists)
+# 
+# Phase 5: Adaptability Challenge & Scenario Testing
+#     ├── New scenario introduction (medical emergency)
+#     └── Adaptability assessment and comparison
+# 
+# Phase 6: Model Context Protocol (MCP) Integration
+#     ├── Dynamic tool discovery simulation
+#     ├── Runtime capability enhancement
+#     └── Production-ready extensibility patterns
+# 
+# Phase 7: Workshop Summary & Production Insights
+#     ├── Performance comparison across all approaches
+#     ├── Production deployment considerations
+#     └── Future directions and advanced techniques
+# ```
+# 
+# ## 🔑 **Key Educational Principles**
+# 
+# - **🔍 Incremental Complexity**: Build understanding step-by-step from simple to complex
+# - **⚖️ Comparative Analysis**: Rules vs Agents at each step with quantitative measures
+# - **📊 Evidence-Based Learning**: Measure what you build with objective metrics
+# - **🧪 Hypothesis-Driven Development**: Predict outcomes, then verify with experiments
+# - **🚀 Production-Ready Patterns**: Real-world integration and deployment strategies
+# 
+# ---
 
 # %%
 # All imports moved to top of file
 import json
 import requests
 import logging
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Type
 from rich.console import Console
 from rich.panel import Panel
 from dotenv import load_dotenv
@@ -208,31 +191,33 @@ workshop_results = {
 
 RESULTS_FILE = "workshop_experiment_results.json"
 
+# %%
+import weave
+weave.init("fc-workshop-track-2")
+
 # %% [markdown]
-"""
-## 🔧 **PHASE 1: Environment Setup & Service Discovery**
-
-**🎓 Educational Goal**: Establish working environment and understand service 
-dependencies for multi-agent coordination
-
-**👨‍💻 INTERACTIVE COMPONENT**: Explore real service APIs and understand how 
-agents will interact with live systems!
-
-In this phase, we'll:
-1. Set up the SENTINEL GRID smart city simulation
-2. Explore and understand service architecture and capabilities
-3. Define our crisis scenario with dynamic resource discovery
-4. Prepare for systematic comparison of different approaches
-
-**🔑 Key Learning**: Agent systems require reliable service infrastructure and 
-well-defined scenarios for meaningful evaluation. Unlike rule-based systems, 
-agents must discover and adapt to available resources dynamically.
-
-**💡 Why This Matters**: In production, agents often work with services that 
-have varying availability, different capabilities, and changing resource 
-constraints. This phase teaches you to build systems that discover and adapt 
-to real-world service conditions.
-"""
+# ## 🔧 **PHASE 1: Environment Setup & Service Discovery**
+# 
+# **🎓 Educational Goal**: Establish working environment and understand service 
+# dependencies for multi-agent coordination
+# 
+# **👨‍💻 INTERACTIVE COMPONENT**: Explore real service APIs and understand how 
+# agents will interact with live systems!
+# 
+# In this phase, we'll:
+# 1. Set up the SENTINEL GRID smart city simulation
+# 2. Explore and understand service architecture and capabilities
+# 3. Define our crisis scenario with dynamic resource discovery
+# 4. Prepare for systematic comparison of different approaches
+# 
+# **🔑 Key Learning**: Agent systems require reliable service infrastructure and 
+# well-defined scenarios for meaningful evaluation. Unlike rule-based systems, 
+# agents must discover and adapt to available resources dynamically.
+# 
+# **💡 Why This Matters**: In production, agents often work with services that 
+# have varying availability, different capabilities, and changing resource 
+# constraints. This phase teaches you to build systems that discover and adapt 
+# to real-world service conditions.
 
 # %%
 # 🎓 EDUCATIONAL NOTE: Infrastructure Setup for Multi-Agent Systems
@@ -290,7 +275,9 @@ console.print(Panel(
     title="Interactive Service Discovery",
     border_style="green"
 ))
+
 # %%
+@weave.op
 def create_heat_wave_scenario():
     """
     🎓 EDUCATIONAL PURPOSE: Create crisis scenario with dynamic resource discovery.
@@ -514,6 +501,7 @@ def create_heat_wave_scenario():
             "traffic": 0.1
         }
     )
+
 # %%
 # 🎓 EDUCATIONAL DEMONSTRATION: Create scenario with actual service IDs for realistic testing
 console.print("\n🎓 **CREATING DYNAMIC CRISIS SCENARIO**")
@@ -562,7 +550,7 @@ console.print(Panel(
     f"📊 **INITIAL SYSTEM STATUS**\n\n"
     f"```json\n{json.dumps(initial_status, indent=2)[:500]}...\n```\n\n"
     f"🎓 **Educational Note**: This baseline data shows exactly what information\n"
-    f"agents have access to when making decisions. Notice the real resource IDs,\n"
+    f"agents have access to when making decisions. Notice the resource IDs,\n"
     f"current load levels, and service availability.",
     title="System Baseline for Agent Decision-Making", 
     border_style="cyan"
@@ -585,6 +573,9 @@ workshop_results["phase_1"] = {
     }
 }
 save_experiment_results(workshop_results)
+
+# %% [markdown]
+# ![](./imgs/morning_scenario_trace.png)
 
 # %%
 console.print(Panel(
@@ -615,40 +606,39 @@ console.print(Panel(
 ))
 
 # %% [markdown]
-"""
-## 🤖 **PHASE 2: Naive LLM Chain Approach Analysis**
-
-**🎓 Educational Goal**: Understand fundamental limitations of single LLM chains 
-for complex coordination tasks
-
-**👨‍💻 INTERACTIVE COMPONENT**: Watch a sophisticated LLM attempt complex 
-coordination and analyze why it fails!
-
-**🧪 Hypothesis to Test**: 
-"A single, well-engineered LLM call with comprehensive context can handle 
-the entire crisis by generating all necessary actions at once."
-
-**🚫 Why This Will Likely Fail:**
-- **No domain expertise**: Generic reasoning vs specialized knowledge
-- **No memory or state**: Cannot remember previous actions or learn from results  
-- **No real-time adaptation**: Cannot adjust to changing conditions
-- **No coordination feedback**: Services cannot communicate back for adjustment
-- **Context limitations**: Struggles with unlimited real-time data processing
-- **Single decision point**: No iterative refinement or multi-step reasoning
-
-**📊 Success Metric**: Command execution success rate and decision quality
-
-**🎯 Learning Outcome**: You'll see exactly why sophisticated prompting alone 
-isn't sufficient for complex multi-service coordination, despite seeming 
-reasonable on the surface!
-
-**💡 Key Insight Preview**: This phase demonstrates that production-level 
-coordination requires more than just better prompts - it needs specialized 
-agents with domain expertise and coordination capabilities.
-"""
+# ## 🤖 **PHASE 2: Naive LLM Chain Approach Analysis**
+# 
+# **🎓 Educational Goal**: Understand fundamental limitations of single LLM chains 
+# for complex coordination tasks
+# 
+# **👨‍💻 INTERACTIVE COMPONENT**: Watch a sophisticated LLM attempt complex 
+# coordination and analyze why it fails!
+# 
+# **🧪 Hypothesis to Test**: 
+# "A single, well-engineered LLM call with comprehensive context can handle 
+# the entire crisis by generating all necessary actions at once."
+# 
+# **🚫 Why This Will Likely Fail:**
+# - **No domain expertise**: Generic reasoning vs specialized knowledge
+# - **No memory or state**: Cannot remember previous actions or learn from results  
+# - **No real-time adaptation**: Cannot adjust to changing conditions
+# - **No coordination feedback**: Services cannot communicate back for adjustment
+# - **Context limitations**: Struggles with unlimited real-time data processing
+# - **Single decision point**: No iterative refinement or multi-step reasoning
+# 
+# **📊 Success Metric**: Command execution success rate and decision quality
+# 
+# **🎯 Learning Outcome**: You'll see exactly why sophisticated prompting alone 
+# isn't sufficient for complex multi-service coordination, despite seeming 
+# reasonable on the surface!
+# 
+# **💡 Key Insight Preview**: This phase demonstrates that production-level 
+# coordination requires more than just better prompts - it needs specialized 
+# agents with domain expertise and coordination capabilities.
 
 # %%
-def naive_llm_approach(scenario: ScenarioDefinition):
+@weave.op
+def naive_llm_approach(scenario: ScenarioDefinition, system_prompt: str, user_prompt: str):
     """
     🎓 EDUCATIONAL DEMONSTRATION: Single LLM chain approach with sophisticated engineering.
     
@@ -661,12 +651,18 @@ def naive_llm_approach(scenario: ScenarioDefinition):
     - **Expert-level prompting**: Crisis management domain expertise
     - **Clear action specifications**: Exact API formats and parameters
     
+    Args:
+        scenario: The crisis scenario to handle
+        system_prompt: The system prompt for the LLM
+        user_prompt: The user prompt for the LLM
+    
     🔑 KEY LEARNING: Even with excellent engineering, single LLM approaches 
     have fundamental limitations for complex coordination tasks.
     
     🎯 EDUCATIONAL VALUE: This establishes the baseline that motivates why 
     we need specialized multi-agent systems.
     """
+
     console.print(Panel(
         "🤖 **PHASE 2: Naive LLM Chain Approach**\n\n"
         "🎯 **Testing Hypothesis**: Can a single, sophisticated LLM call\n"
@@ -693,74 +689,35 @@ def naive_llm_approach(scenario: ScenarioDefinition):
         import litellm
         
         console.print("🧠 **STEP 3**: Constructing expert-level crisis management prompt...")
-        console.print("🎓 **Educational Note**: We're using sophisticated prompting techniques here")
         
         # Sophisticated prompting with structured output - still limited approach
-        system_prompt = f"""You are an expert crisis management AI system. You have access to real-time data 
-from a smart city's Grid, Emergency, and Traffic services. Your task is to generate a comprehensive 
-response plan for the current crisis scenario.
-
-CURRENT SYSTEM STATE:
-{json.dumps(current_status, indent=2)}
-
-AVAILABLE RESOURCES:
-- Grid Zones: {actual_ids.get('grid_zones', [])}
-- Emergency Drones: {actual_ids.get('drones', [])}
-- Active Incidents: {actual_ids.get('incidents', [])}
-- Traffic Sectors: {actual_ids.get('traffic_sectors', [])}
-
-VALID ACTIONS BY SERVICE:
-Grid Service:
-- adjust_zone: Adjust zone capacity (parameters: zone_id, capacity)
-- set_priority: Set infrastructure priority (parameters: infrastructure_id, level)
-
-Emergency Service:
-- assign_drone: Assign drone to incident (parameters: drone_id, incident_id)
-- update_incident: Update incident status (parameters: incident_id, status)
-
-Traffic Service:
-- redirect: Redirect traffic (parameters: sector_id, target_reduction)
-- block_route: Block route (parameters: sector, reason, duration_minutes)
-
-You must generate a JSON response with exactly this structure:
-{{
-    "analysis": "Your analysis of the crisis situation",
-    "strategy": "Overall coordination strategy", 
-    "commands": [
-        {{
-            "service": "grid|emergency|traffic",
-            "action": "one of the valid actions listed above",
-            "parameters": {{"param1": "value1", "param2": "value2"}},
-            "reasoning": "Why this action is needed"
-        }}
-    ]
-}}
-
-IMPORTANT: Only use the exact action names listed above. Use actual resource IDs from the available resources."""
-
-        user_prompt = f"""CRISIS SCENARIO: {scenario.name}
-{scenario.description}
-
-The situation is critical. Analyze the current system state and generate a comprehensive response plan.
-Consider interdependencies between services and prioritize actions by urgency.
-
-Generate commands that address:
-1. Grid stability issues (zone load balancing, infrastructure priorities)
-2. Emergency response (drone assignments, incident management)  
-3. Traffic management (congestion relief, emergency access)
-
-Use only the actual resource IDs provided in the system context and the valid actions specified."""
+        formatted_system_prompt = system_prompt.format(
+            current_status=json.dumps(current_status, indent=2),
+            grid_zones=actual_ids.get('grid_zones', []),
+            drones=actual_ids.get('drones', []),
+            incidents=actual_ids.get('incidents', []),
+            traffic_sectors=actual_ids.get('traffic_sectors', [])
+        )
+        
+        formatted_user_prompt = user_prompt.format(
+            scenario_name=scenario.name,
+            scenario_description=scenario.description
+        )
 
         console.print("🚀 **STEP 4**: Executing sophisticated LLM call for crisis coordination...")
         console.print("⏱️ **Timing**: Measuring response time and decision quality...")
+
+        messages = weave.MessagesPrompt([
+                {"role": "system", "content": formatted_system_prompt},
+                {"role": "user", "content": formatted_user_prompt}
+            ]
+        )
+        weave.publish(messages, name="naive_llm_prompt")
         
         # Structured completion with LiteLLM - still one-shot approach
         response = litellm.completion(
             model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
+            messages=messages.messages,
             temperature=0.1,
             max_tokens=1000,
         )
@@ -845,6 +802,66 @@ Use only the actual resource IDs provided in the system context and the valid ac
     return actions, success_rate
 
 # %%
+system_prompt = """You are an expert crisis management AI system. You have access to real-time data 
+from a smart city's Grid, Emergency, and Traffic services. Your task is to generate a comprehensive 
+response plan for the current crisis scenario.
+
+CURRENT SYSTEM STATE:
+{current_status}
+
+AVAILABLE RESOURCES:
+- Grid Zones: {grid_zones}
+- Emergency Drones: {drones}
+- Active Incidents: {incidents}
+- Traffic Sectors: {traffic_sectors}
+
+VALID ACTIONS BY SERVICE:
+Grid Service:
+- adjust_zone: Adjust zone capacity (parameters: zone_id, capacity)
+- set_priority: Set infrastructure priority (parameters: infrastructure_id, level)
+
+Emergency Service:
+- assign_drone: Assign drone to incident (parameters: drone_id, incident_id)
+- update_incident: Update incident status (parameters: incident_id, status)
+
+Traffic Service:
+- redirect: Redirect traffic (parameters: sector_id, target_reduction)
+- block_route: Block route (parameters: sector, reason, duration_minutes)
+
+You must generate a JSON response with exactly this structure:
+{{
+    "analysis": "Your analysis of the crisis situation",
+    "strategy": "Overall coordination strategy", 
+    "commands": [
+        {{
+            "service": "grid|emergency|traffic",
+            "action": "one of the valid actions listed above",
+            "parameters": {{"param1": "value1", "param2": "value2"}},
+            "reasoning": "Why this action is needed"
+        }}
+    ]
+}}
+
+IMPORTANT: Only use the exact action names listed above. Use actual resource IDs from the available resources."""
+
+# %%
+user_prompt = """CRISIS SCENARIO: {scenario_name}
+{scenario_description}
+
+The situation is critical. Analyze the current system state and generate a comprehensive response plan.
+Consider interdependencies between services and prioritize actions by urgency.
+
+Generate commands that address:
+1. Grid stability issues (zone load balancing, infrastructure priorities)
+2. Emergency response (drone assignments, incident management)  
+3. Traffic management (congestion relief, emergency access)
+
+Use only the actual resource IDs provided in the system context and the valid actions specified."""
+
+# %% [markdown]
+# ![](./imgs/morning_naive_llm_trace.png)
+
+# %%
 # 🎓 EDUCATIONAL EXPERIMENT: Test the naive approach with proper scenario definition
 console.print(Panel(
     "🧪 **PHASE 2 EXPERIMENT: Testing Naive LLM Approach**\n\n"
@@ -861,7 +878,7 @@ console.print(Panel(
 console.print("🔄 **EXPERIMENTAL SETUP**: Resetting environment for clean LLM test...")
 activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - LLM Test")
 
-llm_actions, llm_success_rate = naive_llm_approach(HEAT_WAVE_SCENARIO)
+llm_actions, llm_success_rate = naive_llm_approach(scenario=HEAT_WAVE_SCENARIO, system_prompt=system_prompt, user_prompt=user_prompt)
 
 # 🛠️ HANDS-ON ANALYSIS EXERCISE
 console.print(Panel(
@@ -916,199 +933,96 @@ console.print(Panel(
 ))
 
 # %% [markdown]
-"""
-### 🎮 **Key Insights from Naive LLM Approach**
-
-**🎓 Educational Analysis: Why Single LLM Chains Fail for Complex Coordination**
-
-Despite excellent engineering (comprehensive context, structured output, expert prompting), 
-the naive LLM approach demonstrates several fundamental limitations:
-
-**1. 🎯 Single Decision Point Limitation**
-- No adaptation or learning from intermediate results
-- Cannot adjust strategy based on action outcomes
-- One-shot approach vs iterative refinement
-
-**2. 🧠 Memory and State Management Issues**
-- Cannot remember previous actions or their outcomes during execution
-- No learning from failures or successes within the same session
-- No persistent context across multiple coordination cycles
-
-**3. 🔄 Coordination and Feedback Gaps**
-- Services cannot provide feedback for real-time strategy adjustment
-- No mechanism for cross-service communication and status updates
-- Cannot handle cascading effects or interdependencies dynamically
-
-**4. ⏱️ Real-Time Monitoring Limitations**
-- Cannot continuously monitor and adjust to changing conditions
-- No mechanism for handling events that occur during execution
-- Fixed strategy cannot adapt to evolving crisis conditions
-
-**5. 📏 Context Window and Scalability Constraints**
-- Limited ability to process unlimited real-time data streams
-- Context window limitations affect complex, multi-step reasoning
-- Scalability issues with large numbers of services and resources
-
-**6. 🎭 Generic vs Specialized Reasoning**
-- General intelligence vs domain-specific expertise
-- Lacks deep understanding of service-specific constraints and patterns
-- Cannot leverage specialized knowledge that comes from focused training
-
-**7. 🔁 Iterative Refinement Challenges**
-- No mechanism for continuous improvement during execution
-- Cannot learn and adapt strategies based on real-world feedback
-- One-shot approach prevents sophisticated multi-step coordination
-
-**🔑 Central Insight**: Complex coordination requires more than sophisticated prompting!
-
-**📊 Measured Success Rate**: {llm_success_rate:.1%} - This becomes our baseline for comparison
-
-**🚀 Implication**: Production-level coordination needs specialized agents with:
-- Domain expertise for each service area
-- Memory and state management capabilities  
-- Inter-agent communication and coordination mechanisms
-- Adaptive learning and iterative refinement abilities
-- Real-time monitoring and adjustment capabilities
-
-This motivates our next phase: building specialized agents for each service domain.
-"""
+# ### 🎮 **Key Insights from Naive LLM Approach**
+# 
+# **🎓 Educational Analysis: Why Single LLM Chains Fail for Complex Coordination**
+# 
+# Despite excellent engineering (comprehensive context, structured output, expert prompting), 
+# the naive LLM approach demonstrates several fundamental limitations:
+# 
+# **1. 🎯 Single Decision Point Limitation**
+# - No adaptation or learning from intermediate results
+# - Cannot adjust strategy based on action outcomes
+# - One-shot approach vs iterative refinement
+# 
+# **2. 🧠 Memory and State Management Issues**
+# - Cannot remember previous actions or their outcomes during execution
+# - No learning from failures or successes within the same session
+# - No persistent context across multiple coordination cycles
+# 
+# **3. 🔄 Coordination and Feedback Gaps**
+# - Services cannot provide feedback for real-time strategy adjustment
+# - No mechanism for cross-service communication and status updates
+# - Cannot handle cascading effects or interdependencies dynamically
+# 
+# **4. ⏱️ Real-Time Monitoring Limitations**
+# - Cannot continuously monitor and adjust to changing conditions
+# - No mechanism for handling events that occur during execution
+# - Fixed strategy cannot adapt to evolving crisis conditions
+# 
+# **5. 📏 Context Window and Scalability Constraints**
+# - Limited ability to process unlimited real-time data streams
+# - Context window limitations affect complex, multi-step reasoning
+# - Scalability issues with large numbers of services and resources
+# 
+# **6. 🎭 Generic vs Specialized Reasoning**
+# - General intelligence vs domain-specific expertise
+# - Lacks deep understanding of service-specific constraints and patterns
+# - Cannot leverage specialized knowledge that comes from focused training
+# 
+# **7. 🔁 Iterative Refinement Challenges**
+# - No mechanism for continuous improvement during execution
+# - Cannot learn and adapt strategies based on real-world feedback
+# - One-shot approach prevents sophisticated multi-step coordination
+# 
+# **🔑 Central Insight**: Complex coordination requires more than sophisticated prompting!
+# 
+# **📊 Measured Success Rate**: {llm_success_rate:.1%} - This becomes our baseline for comparison
+# 
+# **🚀 Implication**: Production-level coordination needs specialized agents with:
+# - Domain expertise for each service area
+# - Memory and state management capabilities  
+# - Inter-agent communication and coordination mechanisms
+# - Adaptive learning and iterative refinement abilities
+# - Real-time monitoring and adjustment capabilities
+# 
+# This motivates our next phase: building specialized agents for each service domain.
 
 # %% [markdown]
-"""
-## 🛠️ **PHASE 3: Service-by-Service Investigation**
-
-**🎓 Educational Goal**: Build understanding of each service domain and compare approaches
-
-**📚 What We're Learning:**
-- **Domain Expertise**: Each service has unique challenges and requirements
-- **Rules vs Agents**: Compare rigid logic vs adaptive reasoning
-- **Tool Design**: Create specialized capabilities for each domain
-- **Component Reuse**: Build pieces that compose into larger systems
-
-**🔍 Investigation Strategy**:
-For each service, we will:
-1. **🔍 Explore**: Understand service API and current state  
-2. **📏 Build Rules**: Create deterministic, scenario-specific logic
-3. **🤖 Create Agent**: Develop adaptive agent with specialized tools
-4. **⚖️ Compare**: Evaluate rules vs agent performance
-5. **🧩 Store**: Save components for later composition
-
-**💡 Key Insight**: This incremental approach lets us understand each domain before 
-attempting coordination.
-"""
+# ## 🛠️ **PHASE 3: Service-by-Service Investigation**
+# 
+# **🎓 Educational Goal**: Build understanding of each service domain and compare approaches
+# 
+# **📚 What We're Learning:**
+# - **Domain Expertise**: Each service has unique challenges and requirements
+# - **Rules vs Agents**: Compare rigid logic vs adaptive reasoning
+# - **Tool Design**: Create specialized capabilities for each domain
+# - **Component Reuse**: Build pieces that compose into larger systems
+# 
+# **🔍 Investigation Strategy**:
+# For each service, we will:
+# 1. **🔍 Explore**: Understand service API and current state  
+# 2. **📏 Build Rules**: Create deterministic, scenario-specific logic
+# 3. **🤖 Create Agent**: Develop adaptive agent with specialized tools
+# 4. **⚖️ Compare**: Evaluate rules vs agent performance
+# 5. **🧩 Store**: Save components for later composition
+# 
+# **💡 Key Insight**: This incremental approach lets us understand each domain before 
+# attempting coordination.
 
 # %%
-# Structured output models for agent communication
-# Key principle: consistent data exchange between autonomous agents
-class ZoneAdjustment(BaseModel):
-    """Zone capacity adjustment action."""
-    zone_id: str = Field(description="ID of the zone to adjust")
-    capacity: float = Field(description="New capacity ratio (0.0-1.0)")
-    reason: str = Field(description="Reason for the adjustment")
-
-
-class InfrastructurePriority(BaseModel):
-    """Infrastructure priority setting action."""
-    infrastructure_id: str = Field(description="ID of infrastructure")
-    level: str = Field(description="Priority level (normal, high, critical)")
-    reason: str = Field(description="Reason for priority change")
-
-
-class GridManagementPlan(BaseModel):
-    """Structured output for grid management actions during heat wave."""
-    zone_adjustments: List[ZoneAdjustment] = Field(
-        description="Zone capacity adjustments to prevent overloads"
-    )
-    priority_settings: List[InfrastructurePriority] = Field(
-        description="Infrastructure priority changes for critical facilities"
-    )
-    stability_forecast: str = Field(
-        description="Expected grid stability after implementing changes"
-    )
-    coordination_notes: str = Field(
-        description="Notes for other agents about grid impacts and dependencies"
-    )
-
-
-class DroneAssignment(BaseModel):
-    """Drone assignment action."""
-    drone_id: str = Field(description="ID of the drone to assign")
-    incident_id: str = Field(description="ID of the incident to respond to")
-    reason: str = Field(description="Reason for this assignment")
-
-
-class IncidentUpdate(BaseModel):
-    """Incident status update action."""
-    incident_id: str = Field(description="ID of the incident to update "
-                           "(use actual IDs: E-1001, E-1002, E-1003, E-1004)")
-    status: str = Field(description="New status ('active', 'assigned', "
-                                   "'in_progress', 'resolved')")
-    reason: str = Field(description="Reason for status change")
-
-
-class EmergencyResponsePlan(BaseModel):
-    """Structured output for emergency response actions during heat wave."""
-    drone_assignments: List[DroneAssignment] = Field(
-        description="Drone to incident assignments prioritized by urgency"
-    )
-    incident_updates: List[IncidentUpdate] = Field(
-        description="Incident status updates to track response progress"
-    )
-    resource_allocation: str = Field(
-        description="Summary of how limited resources are being allocated"
-    )
-    coordination_notes: str = Field(
-        description="Notes for other agents about emergency operations and "
-                   "priorities"
-    )
-
-
-class TrafficRedirection(BaseModel):
-    """Traffic redirection action."""
-    sector_id: str = Field(description="ID of the traffic sector to redirect")
-    target_reduction: float = Field(description="Target congestion reduction "
-                                               "(0.0-1.0)")
-    reason: str = Field(description="Reason for redirection")
-
-
-class RouteBlocking(BaseModel):
-    """Route blocking action."""
-    sector_id: str = Field(description="ID of the sector to block")
-    duration_minutes: int = Field(description="Duration to block in minutes")
-    reason: str = Field(description="Reason for blocking")
-
-
-class TrafficManagementPlan(BaseModel):
-    """Structured output for traffic management actions during heat wave."""
-    traffic_redirections: List[TrafficRedirection] = Field(
-        description="Traffic redirection actions to reduce congestion"
-    )
-    route_blocks: List[RouteBlocking] = Field(
-        description="Route blocking actions for emergency access"
-    )
-    emergency_corridors: str = Field(
-        description="Description of maintained emergency vehicle access routes"
-    )
-    coordination_notes: str = Field(
-        description="Notes for other agents about traffic impacts and "
-                   "emergency access"
-    )
-
-
-console.print("📋 Structured output models defined for consistent agent communication")
+from workshop.session_utils import execute_rule_commands
 
 # %% [markdown]
-"""
-### ⚡ **Phase 3A: Grid Service Investigation**
-
-**🎯 Learning Objectives**:
-- Understand grid zone management and capacity control
-- Learn infrastructure prioritization strategies  
-- Compare rule-based vs agent-based power management
-- Design tools for grid stability operations
-
-Let's start by exploring the Grid service!
-"""
+# ### ⚡ **Phase 3A: Grid Service Investigation**
+# 
+# **🎯 Learning Objectives**:
+# - Understand grid zone management and capacity control
+# - Learn infrastructure prioritization strategies  
+# - Compare rule-based vs agent-based power management
+# - Design tools for grid stability operations
+# 
+# Let's start by exploring the Grid service!
 
 # %%
 # Grid Service Analysis
@@ -1151,12 +1065,11 @@ explore_grid_service()
 
 # %%
 # A. Rule-Based Grid Management
-class GridRuleBasedManager:
+class GridRuleBasedManager(weave.Model):
     """Rule-based approach for grid management - heat wave specific."""
-    
-    def __init__(self):
-        self.name = "Grid Rule-Based Manager"
+    name : str = "Grid Rule-Based Manager"
         
+    @weave.op
     def analyze_heat_wave_rules(self, scenario_state):
         """Apply heat wave specific rules for grid management."""
         commands = []
@@ -1181,33 +1094,97 @@ class GridRuleBasedManager:
                 })
                 console.print(f"  ⚡ Simple Rule: Reducing {zone_id} capacity "
                              f"(load: {current_load:.1%})")
-        
-        # Removed infrastructure priority logic to make rules less comprehensive
-        
+                
         return commands
 
 # %%
-# B. Agent-Based Grid Management with Dynamic Tools
-def create_grid_zone_adjustment_tool():
-    """Create GridZoneAdjustmentTool with dynamic description."""
+# Test Grid Service: Rules vs Agent
+console.print(Panel("⚖️ Grid Service: Rules vs Agent Testing", border_style="yellow"))
+
+# Test 1: Grid Rule-Based Manager
+console.print("\n📏 Testing Grid Rule-Based Management")
+activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Grid Rules Test")
+
+grid_rule_manager = GridRuleBasedManager()
+grid_rule_commands = grid_rule_manager.analyze_heat_wave_rules(
+    HEAT_WAVE_SCENARIO.initial_state
+)
+
+# Execute grid rule commands
+grid_rule_success_rate = execute_rule_commands(grid_rule_commands)
+
+# %%
+console.print("📊 Evaluating grid rules with scenario-based method...")
+grid_rule_command_dicts = []
+for cmd in grid_rule_commands:
+    grid_rule_command_dicts.append({
+        "service": cmd["service"],
+        "action": cmd["action"],
+        "parameters": cmd.get("parameters", {}),
+        "success": True  # Assume successful execution for fair comparison
+    })
+
+grid_rule_evaluation = evaluate_scenario_commands(
+    commands=grid_rule_command_dicts,
+    scenario_type=ScenarioType.GRID_SURGE,
+    current_state=get_system_status(),
+    scenario_definition=HEAT_WAVE_SCENARIO
+)
+grid_rule_success_rate = grid_rule_evaluation.get('overall_score', grid_rule_success_rate)
+console.print(grid_rule_success_rate)
+
+# %%
+# Structured output models for agent communication
+# Key principle: consistent data exchange between autonomous agents
+class ZoneAdjustment(BaseModel):
+    """Zone capacity adjustment action."""
+    zone_id: str = Field(description="ID of the zone to adjust")
+    capacity: float = Field(description="New capacity ratio (0.0-1.0)")
+    reason: str = Field(description="Reason for the adjustment")
+
+
+class InfrastructurePriority(BaseModel):
+    """Infrastructure priority setting action."""
+    infrastructure_id: str = Field(description="ID of infrastructure")
+    level: str = Field(description="Priority level (normal, high, critical)")
+    reason: str = Field(description="Reason for priority change")
+
+# %%
+grid_zone_adjustment_tool_description = """
+Adjust the power grid zone capacity with detailed specifications.
+
+Parameters:
+- zone_id: Target zone identifier (available: {zones})
+- capacity: Desired capacity level (0.0-1.0)
+- reason: Justification for the adjustment
+
+Returns execution status with detailed feedback.
+"""
+
+# %%
+@weave.op
+def create_grid_zone_adjustment_tool(tool_description: str):
+    """
+    Create GridZoneAdjustmentTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
     actual_ids = get_actual_service_ids()
     available_zones = actual_ids.get('grid_zones', ['Z001', 'Z002', 'Z003'])
+
+    description = tool_description.format(zones=', '.join(available_zones))
+    weave.publish(weave.StringPrompt(description), name="grid_tool_prompt")
     
-    class DynamicGridZoneAdjustmentTool(BaseTool):
+    class GridZoneAdjustmentTool(BaseTool):
         name: str = "adjust_grid_zone"
-        description: str = (
-            f"Adjust the capacity of a specific power grid zone.\n\n"
-            f"Parameters:\n"
-            f"- zone_id: ID of the zone (available zones: "
-            f"{', '.join(available_zones)})\n"
-            f"- capacity: New capacity level between 0.0 and 1.0\n"
-            f"- reason: Reason for the adjustment\n\n"
-            f"Returns success/failure status."
-        )
+        description: str = ""
         
-        def __init__(self):
+        def __init__(self, description):
             super().__init__()
             self._execution_results = []
+            self.description = description
         
         def _run(self, zone_id: str, capacity: float, reason: str) -> str:
             cmd = Command(
@@ -1227,11 +1204,30 @@ def create_grid_zone_adjustment_tool():
             
             return f"Grid zone {zone_id} adjustment: {status}"
 
-    return DynamicGridZoneAdjustmentTool()
+    return GridZoneAdjustmentTool(description=description)
 
 # %%
-def create_infrastructure_priority_tool():
-    """Create InfrastructurePriorityTool with dynamic description."""
+infrastructure_priority_tool_description = """
+Set priority level for critical infrastructure.
+
+Parameters:
+- infrastructure_id: ID of infrastructure (available: {infrastructure})
+- level: Priority level ('normal', 'high', 'critical')
+- reason: Reason for priority change
+
+Returns success/failure status.
+"""
+
+# %%
+@weave.op
+def create_infrastructure_priority_tool(tool_description: str):
+    """
+    Create InfrastructurePriorityTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
     try:
         response = requests.get(f"{SERVICE_URLS['grid']}/service/info", timeout=5)
         if response.status_code == 200:
@@ -1243,21 +1239,17 @@ def create_infrastructure_priority_tool():
     except Exception:
         available_infrastructure = ["hospital", "police", "emergency_services"]
     
-    class DynamicInfrastructurePriorityTool(BaseTool):
+    description = tool_description.format(infrastructure=', '.join(available_infrastructure))
+    weave.publish(weave.StringPrompt(description), name="infrastructure_tool_prompt")
+    
+    class InfrastructurePriorityTool(BaseTool):
         name: str = "set_infrastructure_priority"
-        description: str = (
-            f"Set priority level for critical infrastructure.\n\n"
-            f"Parameters:\n"
-            f"- infrastructure_id: ID of infrastructure (available: "
-            f"{', '.join(available_infrastructure)})\n"
-            f"- level: Priority level ('normal', 'high', 'critical')\n"
-            f"- reason: Reason for priority change\n\n"
-            f"Returns success/failure status."
-        )
+        description: str = ""
         
-        def __init__(self):
+        def __init__(self, description):
             super().__init__()
             self._execution_results = []
+            self.description = description
         
         def _run(self, infrastructure_id: str, level: str, reason: str) -> str:
             cmd = Command(
@@ -1278,141 +1270,24 @@ def create_infrastructure_priority_tool():
             
             return f"Infrastructure {infrastructure_id} priority: {status}"
 
-    return DynamicInfrastructurePriorityTool()
+    return InfrastructurePriorityTool(description=description)
 
 # %%
-def create_drone_assignment_tool():
-    """Create DroneAssignmentTool with dynamic description based on actual service IDs."""
-    actual_ids = get_actual_service_ids()
-    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
-    available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
-    
-    class DynamicDroneAssignmentTool(BaseTool):
-        name: str = "assign_emergency_drone"
-        description: str = (
-            f"Assign an available drone to an emergency incident.\n"
-            f"Available drones: {', '.join(available_drones)}\n"
-            f"Available incidents: {', '.join(available_incidents)}"
-        )
-        
-        def _run(self, drone_id: str, incident_id: str, reason: str) -> str:
-            cmd = Command(
-                service=ServiceType.EMERGENCY,
-                action="assign_drone",
-                parameters={"drone_id": drone_id, "incident_id": incident_id}
-            )
-            
-            executor = CommandExecutor()
-            result = executor.execute(cmd)
-            
-            status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚁 Drone: {drone_id} → {incident_id} ({reason}) - {status}")
-            
-            return f"Drone {drone_id} assignment: {status}"
-
-    return DynamicDroneAssignmentTool()
+class GridAgentConfig(BaseModel):
+    """Configuration for creating an agent with its role, goal, and backstory."""
+    role: str = Field(..., description="The role/title of the agent")
+    goal: str = Field(..., description="The primary objective of the agent")
+    backstory: str = Field(..., description="The agent's background and context")
 
 # %%
-def create_incident_update_tool():
-    """Create IncidentUpdateTool with dynamic description based on actual service IDs."""
-    actual_ids = get_actual_service_ids()
-    available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+@weave.op
+def create_grid_agent(config: GridAgentConfig):
+    """
+    Create the Grid Management Specialist Agent with dynamic context.
     
-    class DynamicIncidentUpdateTool(BaseTool):
-        name: str = "update_incident_status"
-        description: str = (
-            f"Update the status of an emergency incident.\n"
-            f"Available incidents: {', '.join(available_incidents)}\n"
-            f"Valid statuses: 'active', 'assigned', 'in_progress', 'resolved'"
-        )
-        
-        def _run(self, incident_id: str, status: str, reason: str) -> str:
-            cmd = Command(
-                service=ServiceType.EMERGENCY,
-                action="update_incident",
-                parameters={"incident_id": incident_id, "status": status}
-            )
-            
-            executor = CommandExecutor()
-            result = executor.execute(cmd)
-            
-            status_result = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚨 Incident: {incident_id} → {status} ({reason}) - {status_result}")
-            
-            return f"Incident {incident_id} update: {status_result}"
-
-    return DynamicIncidentUpdateTool()
-
-# %%
-def create_traffic_redirection_tool():
-    """Create TrafficRedirectionTool with dynamic description based on actual service IDs."""
-    actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
-    
-    class DynamicTrafficRedirectionTool(BaseTool):
-        name: str = "redirect_traffic"
-        description: str = (
-            f"Redirect traffic in congested sectors.\n"
-            f"Available sectors: {', '.join(available_sectors)}"
-        )
-        
-        def _run(self, sector_id: str, target_reduction: float, reason: str) -> str:
-            cmd = Command(
-                service=ServiceType.TRAFFIC,
-                action="redirect",
-                parameters={"sector_id": sector_id, "target_reduction": target_reduction}
-            )
-            
-            executor = CommandExecutor()
-            result = executor.execute(cmd)
-            
-            status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚦 Traffic: {sector_id} → {target_reduction:.1%} reduction ({reason}) - {status}")
-            
-            return f"Traffic redirection in sector {sector_id}: {status}"
-
-    return DynamicTrafficRedirectionTool()
-
-# %%
-def create_route_blocking_tool():
-    """Create RouteBlockingTool with dynamic description based on actual service IDs."""
-    actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
-    
-    class DynamicRouteBlockingTool(BaseTool):
-        name: str = "block_route"
-        description: str = (
-            f"Block a route for emergency access.\n"
-            f"Available sectors: {', '.join(available_sectors)}"
-        )
-        
-        def _run(self, sector_id: str, duration_minutes: int, reason: str) -> str:
-            cmd = Command(
-                service=ServiceType.TRAFFIC,
-                action="block_route",
-                parameters={
-                    "sector": sector_id,
-                    "reason": reason,
-                    "duration_minutes": duration_minutes
-                }
-            )
-            
-            executor = CommandExecutor()
-            result = executor.execute(cmd)
-            
-            status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚧 Route: {sector_id} blocked for {duration_minutes}min ({reason}) - {status}")
-            
-            return f"Route blocking in sector {sector_id}: {status}"
-    
-    return DynamicRouteBlockingTool()
-
-# %%
-# Create Grid Agent
-def create_grid_agent():
-    """Create the Grid Management Specialist Agent with dynamic context."""
+    Args:
+        config: AgentConfig containing the base agent configuration
+    """
     actual_ids = get_actual_service_ids()
     available_zones = actual_ids.get('grid_zones', ['Z001', 'Z002', 'Z003'])
     
@@ -1427,30 +1302,81 @@ def create_grid_agent():
     except Exception:
         available_infrastructure = ["hospital", "police", "emergency_services"]
     
+    # Format the backstory with dynamic content
+    formatted_backstory = config.backstory.format(
+        zones=', '.join(available_zones),
+        infrastructure=', '.join(available_infrastructure),
+        zone_count=len(available_zones)
+    )
+    
+    # Format the goal with dynamic content
+    formatted_goal = config.goal.format(
+        zone_count=len(available_zones)
+    )
+    
     grid_specialist = Agent(
-        role="Power Grid Stability Specialist",
-        goal=f"Prevent grid failures through capacity management and infrastructure prioritization across {len(available_zones)} zones",
-        backstory=(
-            f"Senior grid engineer specializing in load balancing and infrastructure prioritization.\n\n"
-            f"Available resources:\n"
-            f"• Grid zones: {', '.join(available_zones)}\n"
-            f"• Critical infrastructure: {', '.join(available_infrastructure)}\n\n"
-            f"Decision criteria:\n"
-            f"• Reduce capacity for any zone >90% load to 0.8 or lower\n"
-            f"• Set all critical infrastructure to 'critical' priority\n"
-            f"• Take 6+ actions total (zone adjustments + infrastructure priorities)\n"
-            f"• Use actual resource IDs only"
-        ),
-        tools=[create_grid_zone_adjustment_tool(), create_infrastructure_priority_tool()],
-        verbose=True,
+        role=config.role,
+        goal=formatted_goal,
+        backstory=formatted_backstory,
+        tools=[create_grid_zone_adjustment_tool(grid_zone_adjustment_tool_description), 
+               create_infrastructure_priority_tool(infrastructure_priority_tool_description)],
+        verbose=False,
         allow_delegation=False
     )
     
     return grid_specialist
 
 # %%
-def create_grid_task(grid_agent):
-    """Create a task specifically for the Grid agent with dynamic context."""
+# Define the base configuration
+grid_agent_config = GridAgentConfig(
+    role="Power Grid Stability Specialist",
+    goal="Prevent grid failures through capacity management and infrastructure prioritization across {zone_count} zones",
+    backstory=(
+        "Senior grid engineer specializing in load balancing and infrastructure prioritization.\n\n"
+        "Available resources:\n"
+        "• Grid zones: {zones}\n"
+        "• Critical infrastructure: {infrastructure}\n\n"
+        "Decision criteria:\n"
+        "• Reduce capacity for any zone >90% load to 0.8 or lower\n"
+        "• Set all critical infrastructure to 'critical' priority\n"
+        "• Take 6+ actions total (zone adjustments + infrastructure priorities)\n"
+        "• Use actual resource IDs only"
+    )
+)
+
+# %%
+class GridManagementPlan(BaseModel):
+    """Structured output for grid management actions during heat wave."""
+    zone_adjustments: List[ZoneAdjustment] = Field(
+        description="Zone capacity adjustments to prevent overloads"
+    )
+    priority_settings: List[InfrastructurePriority] = Field(
+        description="Infrastructure priority changes for critical facilities"
+    )
+    stability_forecast: str = Field(
+        description="Expected grid stability after implementing changes"
+    )
+    coordination_notes: str = Field(
+        description="Notes for other agents about grid impacts and dependencies"
+    )
+
+# %%
+class GridTaskConfig(BaseModel):
+    """Configuration for creating a task with its description and expected output."""
+    description: str = Field(..., description="The task description with placeholders for dynamic content")
+    expected_output: str = Field(..., description="Description of the expected output from the task")
+    output_pydantic: Type = Field(..., description="The Pydantic model class for the output")
+
+# %%
+@weave.op
+def create_grid_task(grid_agent, config: GridTaskConfig):
+    """
+    Create a task specifically for the Grid agent with dynamic context.
+    
+    Args:
+        grid_agent: The agent that will execute the task
+        config: TaskConfig containing the base task configuration
+    """
     actual_ids = get_actual_service_ids()
     available_zones = actual_ids.get('grid_zones', ['Z001', 'Z002', 'Z003'])
     
@@ -1465,100 +1391,51 @@ def create_grid_task(grid_agent):
     except Exception:
         available_infrastructure = ["hospital", "police", "emergency_services"]
     
+    # Format the description with dynamic content
+    formatted_description = config.description.format(
+        zones=', '.join(available_zones),
+        infrastructure=', '.join(available_infrastructure)
+    )
+    
     grid_task = Task(
-        description=(
-            f"Heat wave crisis: Grid zones approaching overload thresholds.\n\n"
-            f"Required actions:\n"
-            f"1. Check all zones: {', '.join(available_zones)}\n"
-            f"2. Reduce capacity to 0.8 for any zone >90% load\n"
-            f"3. Set all critical infrastructure to 'critical' priority: {', '.join(available_infrastructure)}\n\n"
-            f"Success criteria: Execute 6+ total actions minimum\n"
-            f"Use only the resource IDs listed above"
-        ),
+        description=formatted_description,
         agent=grid_agent,
-        expected_output="Grid management plan with capacity adjustments and infrastructure priorities",
-        output_pydantic=GridManagementPlan
+        expected_output=config.expected_output,
+        output_pydantic=config.output_pydantic
     )
     
     return grid_task
 
 # %%
-# Test Grid Service: Rules vs Agent
-console.print(Panel("⚖️ Grid Service: Rules vs Agent Testing", border_style="yellow"))
-
-# Test 1: Grid Rule-Based Manager
-console.print("\n📏 Testing Grid Rule-Based Management")
-reset_all_service_states()
-activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Grid Rules Test")
-
-grid_rule_manager = GridRuleBasedManager()
-grid_rule_commands = grid_rule_manager.analyze_heat_wave_rules(
-    HEAT_WAVE_SCENARIO.initial_state
+# Define the base task configuration
+grid_task_config = GridTaskConfig(
+    description=(
+        "Heat wave crisis: Grid zones approaching overload thresholds.\n\n"
+        "Required actions:\n"
+        "1. Check all zones: {zones}\n"
+        "2. Reduce capacity to 0.8 for any zone >90% load\n"
+        "3. Set all critical infrastructure to 'critical' priority: {infrastructure}\n\n"
+        "Success criteria: Execute 6+ total actions minimum\n"
+        "Use only the resource IDs listed above"
+    ),
+    expected_output="Grid management plan with capacity adjustments and infrastructure priorities",
+    output_pydantic=GridManagementPlan
 )
-
-# Execute grid rule commands
-executor = CommandExecutor()
-grid_rule_results = []
-
-for i, command in enumerate(grid_rule_commands, 1):
-    console.print(f"\n📏 Grid Rule {i}: {command.get('rule', 'No rule description')}")
-    
-    try:
-        cmd = Command(
-            service=ServiceType(command["service"]),
-            action=command["action"],
-            parameters=command.get("parameters", {})
-        )
-        result = executor.execute(cmd)
-        grid_rule_results.append(result.success)
-        
-        status = "✅ SUCCESS" if result.success else "❌ FAILED"
-        console.print(f"  {status}: {command['service']}.{command['action']}")
-        
-        if not result.success:
-            console.print(f"    Error: {result.error}")
-            
-    except Exception as e:
-        console.print(f"  ❌ EXECUTION ERROR: {e}")
-        grid_rule_results.append(False)
-
-grid_rule_success_rate = (sum(grid_rule_results) / len(grid_rule_results) 
-                         if grid_rule_results else 0)
-
-# %%
-console.print("📊 Evaluating grid rules with scenario-based method...")
-grid_rule_command_dicts = []
-for cmd in grid_rule_commands:
-    grid_rule_command_dicts.append({
-        "service": cmd["service"],
-        "action": cmd["action"],
-        "parameters": cmd.get("parameters", {}),
-        "success": True  # Assume successful execution for fair comparison
-    })
-
-grid_rule_evaluation = evaluate_scenario_commands(
-    commands=grid_rule_command_dicts,
-    scenario_type=ScenarioType.GRID_SURGE,
-    current_state=get_system_status(),
-    scenario_definition=HEAT_WAVE_SCENARIO
-)
-grid_rule_success_rate = grid_rule_evaluation.get('overall_score', grid_rule_success_rate)
 
 # %%
 # Test 2: Grid Agent-Based Manager
 console.print("\n🤖 Testing Grid Agent-Based Management")
-reset_all_service_states()
 activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Grid Agent Test")
 
-grid_agent = create_grid_agent()
-grid_task = create_grid_task(grid_agent)
+grid_agent = create_grid_agent(grid_agent_config)
+grid_task = create_grid_task(grid_agent, grid_task_config)
 
 # Create single-agent crew for grid testing
 grid_crew = Crew(
     agents=[grid_agent],
     tasks=[grid_task],
     process=Process.sequential,
-    verbose=True
+    verbose=False
 )
 
 # Execute grid agent task
@@ -1567,16 +1444,14 @@ grid_agent_result = grid_crew.kickoff(inputs={
     "scenario_description": HEAT_WAVE_SCENARIO.description
 })
 
-# FIXED: Use proper agent evaluation instead of artificial baseline
 console.print("📊 Evaluating grid agent with proper agent converter...")
 grid_agent_success_rate, grid_agent_commands, grid_agent_evaluation = convert_and_evaluate_agent_commands(
     crew_result=grid_agent_result,
     scenario_definition=HEAT_WAVE_SCENARIO,
     scenario_type=ScenarioType.GRID_SURGE
 )
-
-console.print(f"📊 Grid Rules: {grid_rule_success_rate:.1%} ({sum(grid_rule_results)}/{len(grid_rule_results)})")
-console.print(f"📊 Grid Agent: {grid_agent_success_rate:.1%} (using proper agent evaluation)")
+console.print(f"📊 Rule: {grid_rule_success_rate:.1%}")
+console.print(f"📊 Grid Agent: {grid_agent_success_rate:.1%}")
 
 # %%
 # Store Grid service results using actual agent commands
@@ -1617,21 +1492,35 @@ console.print(Panel(
 console.print("✅ Phase 3A Complete: Grid service investigation finished")
 
 # %% [markdown]
-"""
-### 🚁 **Phase 3B: Emergency Service Investigation**
-Following the same pattern for Emergency services - rules vs agents
-"""
+# ### 🚁 **Phase 3B: Emergency Service Investigation**
+# Following the same pattern for Emergency services - rules vs agents
 
 # %%
-# Emergency Rule-Based Manager (condensed)
-class EmergencyRuleBasedManager:
+class DroneAssignment(BaseModel):
+    """Drone assignment action."""
+    drone_id: str = Field(description="ID of the drone to assign")
+    incident_id: str = Field(description="ID of the incident to respond to")
+    reason: str = Field(description="Reason for this assignment")
+
+
+class IncidentUpdate(BaseModel):
+    """Incident status update action."""
+    incident_id: str = Field(description="ID of the incident to update "
+                           "(use actual IDs: E-1001, E-1002, E-1003, E-1004)")
+    status: str = Field(description="New status ('active', 'assigned', "
+                                   "'in_progress', 'resolved')")
+    reason: str = Field(description="Reason for status change")
+
+
+
+# %%
+class EmergencyRuleBasedManager(weave.Model):
     """Rule-based emergency management for heat wave scenarios."""
-    
-    def __init__(self):
-        self.name = "Emergency Rule-Based Manager"
+    name: str = "Emergency Rule-Based Manager"
         
+    @weave.op
     def analyze_heat_wave_rules(self, scenario_state):
-        """Apply heat wave specific emergency rules."""
+        """Apply heat wave specific rules for emergency management."""
         commands = []
         incidents = (scenario_state.incidents 
                     if hasattr(scenario_state, 'incidents') else [])
@@ -1666,36 +1555,6 @@ class EmergencyRuleBasedManager:
         return commands
 
 # %%
-# Emergency Tools and Agent (condensed implementation)
-def create_emergency_tools_and_agent():
-    """Create emergency management tools and agent."""
-    actual_ids = get_actual_service_ids()
-    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
-    available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
-    
-    emergency_agent = Agent(
-        role="Emergency Response Coordinator",
-        goal=f"Optimize drone deployment and incident management across {len(available_drones)} drones and {len(available_incidents)} incidents",
-        backstory=(
-            f"Emergency coordinator specializing in resource allocation and incident response.\n\n"
-            f"Available resources:\n"
-            f"• Drones: {', '.join(available_drones)}\n"
-            f"• Incidents: {', '.join(available_incidents)}\n\n"
-            f"Decision criteria:\n"
-            f"• Assign all drones to incidents based on urgency\n"
-            f"• Update incident statuses to track progress\n"
-            f"• Take 6+ actions total (assignments + status updates)\n"
-            f"• Use actual resource IDs only"
-        ),
-        tools=[create_drone_assignment_tool(), create_incident_update_tool()],
-        verbose=True,
-        allow_delegation=False
-    )
-    
-    return emergency_agent
-
-# %%
 # Test Emergency Service: Rules vs Agent (condensed)
 console.print(Panel("🚁 Phase 3B: Emergency Service Investigation", border_style="red"))
 
@@ -1706,22 +1565,7 @@ emergency_rule_commands = emergency_rule_manager.analyze_heat_wave_rules(
 )
 
 # Actually execute emergency rule commands
-emergency_rule_results = []
-for command in emergency_rule_commands:
-    try:
-        cmd = Command(
-            service=ServiceType(command["service"]),
-            action=command["action"],
-            parameters=command.get("parameters", {})
-        )
-        result = executor.execute(cmd)
-        emergency_rule_results.append(result.success)
-    except Exception as e:
-        console.print(f"Emergency rule execution error: {e}")
-        emergency_rule_results.append(False)
-
-emergency_rule_success_rate = (sum(emergency_rule_results) / len(emergency_rule_results) 
-                               if emergency_rule_results else 0)
+emergency_rule_success_rate = execute_rule_commands(emergency_rule_commands)
 
 # %%
 # Use same evaluation method as agents for fair comparison
@@ -1742,45 +1586,275 @@ emergency_rule_evaluation = evaluate_scenario_commands(
     scenario_definition=HEAT_WAVE_SCENARIO
 )
 emergency_rule_success_rate = emergency_rule_evaluation.get('overall_score', emergency_rule_success_rate)
+# %%
+drone_assignment_tool_description = """
+Assign an available drone to an emergency incident with detailed specifications.
+
+Parameters:
+- drone_id: Target drone identifier (available: {drones})
+- incident_id: Target incident identifier (available: {incidents})
+- reason: Justification for the assignment
+
+Returns execution status with detailed feedback.
+"""
 
 # %%
-# Test Emergency Agent - use proper agent evaluation
-console.print("\n🤖 Testing Emergency Agent-Based Management")
-reset_all_service_states()
-activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Emergency Agent Test")
+incident_update_tool_description = """
+Update the status of an emergency incident with tracking capabilities.
 
-emergency_agent = create_emergency_tools_and_agent()
+Parameters:
+- incident_id: ID of incident to update (available: {incidents})
+- status: New status ('active', 'assigned', 'in_progress', 'resolved')
+- reason: Reason for status change
 
-def create_emergency_task(emergency_agent):
-    """Create a task specifically for the Emergency agent."""
+Returns success/failure status.
+"""
+
+# %%
+@weave.op
+def create_drone_assignment_tool(tool_description: str):
+    """
+    Create DroneAssignmentTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
+    available_incidents = actual_ids.get('incidents', 
+                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+
+    description = tool_description.format(
+        drones=', '.join(available_drones),
+        incidents=', '.join(available_incidents)
+    )
+    weave.publish(weave.StringPrompt(description), name="drone_assignment_tool_prompt")
+    
+    class DroneAssignmentTool(BaseTool):
+        name: str = "assign_emergency_drone"
+        description: str = ""
+        
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
+        
+        def _run(self, drone_id: str, incident_id: str, reason: str) -> str:
+            cmd = Command(
+                service=ServiceType.EMERGENCY,
+                action="assign_drone",
+                parameters={"drone_id": drone_id, "incident_id": incident_id}
+            )
+            
+            executor = CommandExecutor()
+            result = executor.execute(cmd)
+            
+            # Track execution result
+            self._execution_results.append(result.success)
+            
+            status = "SUCCESS" if result.success else "FAILED"
+            console.print(f"🚁 Drone: {drone_id} → {incident_id} ({reason}) - {status}")
+            
+            return f"Drone {drone_id} assignment: {status}"
+
+    return DroneAssignmentTool(description=description)
+
+# %%
+@weave.op
+def create_incident_update_tool(tool_description: str):
+    """
+    Create IncidentUpdateTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_incidents = actual_ids.get('incidents', 
+                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+
+    description = tool_description.format(
+        incidents=', '.join(available_incidents)
+    )
+    weave.publish(weave.StringPrompt(description), name="incident_update_tool_prompt")
+    
+    class IncidentUpdateTool(BaseTool):
+        name: str = "update_incident_status"
+        description: str = ""
+        
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
+        
+        def _run(self, incident_id: str, status: str, reason: str) -> str:
+            cmd = Command(
+                service=ServiceType.EMERGENCY,
+                action="update_incident",
+                parameters={"incident_id": incident_id, "status": status}
+            )
+            
+            executor = CommandExecutor()
+            result = executor.execute(cmd)
+            
+            # Track execution result
+            self._execution_results.append(result.success)
+            
+            status_result = "SUCCESS" if result.success else "FAILED"
+            console.print(f"🚨 Incident: {incident_id} → {status} ({reason}) - {status_result}")
+            
+            return f"Incident {incident_id} update: {status_result}"
+
+    return IncidentUpdateTool(description=description)
+
+# %%
+class EmergencyAgentConfig(BaseModel):
+    """Configuration for creating an emergency agent with its role, goal, and backstory."""
+    role: str = Field(..., description="The role/title of the agent")
+    goal: str = Field(..., description="The primary objective of the agent")
+    backstory: str = Field(..., description="The agent's background and context")
+
+# %%
+@weave.op
+def create_emergency_agent(config: EmergencyAgentConfig):
+    """
+    Create the Emergency Response Coordinator Agent with dynamic context.
+    
+    Args:
+        config: EmergencyAgentConfig containing the base agent configuration
+    """
+    actual_ids = get_actual_service_ids()
+    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
+    available_incidents = actual_ids.get('incidents', 
+                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+    
+    # Format the backstory with dynamic content
+    formatted_backstory = config.backstory.format(
+        drones=', '.join(available_drones),
+        incidents=', '.join(available_incidents),
+        drone_count=len(available_drones),
+        incident_count=len(available_incidents)
+    )
+    
+    # Format the goal with dynamic content
+    formatted_goal = config.goal.format(
+        drone_count=len(available_drones),
+        incident_count=len(available_incidents)
+    )
+    
+    emergency_specialist = Agent(
+        role=config.role,
+        goal=formatted_goal,
+        backstory=formatted_backstory,
+        tools=[create_drone_assignment_tool(drone_assignment_tool_description), 
+               create_incident_update_tool(incident_update_tool_description)],
+        verbose=False,
+        allow_delegation=False
+    )
+    
+    return emergency_specialist
+
+# %%
+# Define the base emergency configuration
+emergency_agent_config = EmergencyAgentConfig(
+    role="Emergency Response Coordinator",
+    goal="Optimize drone deployment and incident management across {drone_count} drones and {incident_count} incidents",
+    backstory=(
+        "Emergency coordinator specializing in resource allocation and incident response.\n\n"
+        "Available resources:\n"
+        "• Drones: {drones}\n"
+        "• Incidents: {incidents}\n\n"
+        "Decision criteria:\n"
+        "• Assign all drones to incidents based on urgency\n"
+        "• Update incident statuses to track progress\n"
+        "• Take 6+ actions total (assignments + status updates)\n"
+        "• Use actual resource IDs only"
+    )
+)
+
+# %%
+class EmergencyResponsePlan(BaseModel):
+    """Structured output for emergency response actions during heat wave."""
+    drone_assignments: List[DroneAssignment] = Field(
+        description="Drone to incident assignments prioritized by urgency"
+    )
+    incident_updates: List[IncidentUpdate] = Field(
+        description="Incident status updates to track response progress"
+    )
+    resource_allocation: str = Field(
+        description="Summary of how limited resources are being allocated"
+    )
+    coordination_notes: str = Field(
+        description="Notes for other agents about emergency operations and "
+                   "priorities"
+    )
+
+# %%
+class EmergencyTaskConfig(BaseModel):
+    """Configuration for creating an emergency task with its description, expected output, and output schema."""
+    description: str = Field(..., description="The task description")
+    expected_output: str = Field(..., description="The expected output")
+    output_pydantic: Type[BaseModel] = Field(..., description="The output schema")
+
+# %%
+@weave.op
+def create_emergency_task(emergency_agent: Agent, config: EmergencyTaskConfig):
+    """
+    Create a task specifically for the Emergency agent with dynamic context.
+    
+    Args:
+        config: EmergencyTaskConfig containing the base task configuration
+        emergency_agent: The Emergency Response Coordinator Agent
+    """
     actual_ids = get_actual_service_ids()
     available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
     available_incidents = actual_ids.get('incidents', ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
     
+    # Format the description with dynamic content
+    formatted_description = config.description.format(
+        drones=', '.join(available_drones),
+        incidents=', '.join(available_incidents)
+    )
+    
     emergency_task = Task(
-        description=(
-            f"Heat wave emergency with multiple casualties requiring drone response.\n\n"
-            f"Available resources:\n"
-            f"• Drones: {', '.join(available_drones)}\n"
-            f"• Incidents: {', '.join(available_incidents)}\n\n"
-            f"Required actions:\n"
-            f"1. Assign all drones to incidents by urgency priority\n"
-            f"2. Update incident statuses to 'assigned' or 'in_progress'\n\n"
-            f"Success criteria: Execute 6+ total actions minimum\n"
-            f"Use only the resource IDs listed above"
-        ),
+        description=formatted_description,
         agent=emergency_agent,
-        expected_output="Emergency response plan with drone assignments and incident tracking",
-        output_pydantic=EmergencyResponsePlan
+        expected_output=config.expected_output,
+        output_pydantic=config.output_pydantic
     )
     return emergency_task
 
-emergency_task = create_emergency_task(emergency_agent)
+# %%
+# Define the base emergency task configuration
+emergency_task_config = EmergencyTaskConfig(
+    description=(
+        "Heat wave emergency with multiple casualties requiring drone response.\n\n"
+        "Available resources:\n"
+        "• Drones: {drones}\n"
+        "• Incidents: {incidents}\n\n"
+        "Required actions:\n"
+        "1. Assign all drones to incidents by urgency priority\n"
+        "2. Update incident statuses to 'assigned' or 'in_progress'\n\n"
+        "Success criteria: Execute 6+ total actions minimum\n"
+        "Use only the resource IDs listed above"
+    ),
+    expected_output="Emergency response plan with drone assignments and incident tracking",
+    output_pydantic=EmergencyResponsePlan
+)
+
+# %%
+# Test Emergency Agent - use proper agent evaluation
+console.print("\n🤖 Testing Emergency Agent-Based Management")
+activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Emergency Agent Test")
+
+emergency_agent = create_emergency_agent(emergency_agent_config)
+emergency_task = create_emergency_task(emergency_agent, emergency_task_config)
 emergency_crew = Crew(
     agents=[emergency_agent],
     tasks=[emergency_task],
     process=Process.sequential,
-    verbose=True
+    verbose=False
 )
 
 emergency_agent_result = emergency_crew.kickoff(inputs={
@@ -1796,8 +1870,8 @@ emergency_agent_success_rate, emergency_agent_commands, emergency_agent_evaluati
     scenario_type=ScenarioType.GRID_SURGE
 )
 
-console.print(f"📊 Emergency Rules: {emergency_rule_success_rate:.1%} ({sum(emergency_rule_results)}/{len(emergency_rule_results)})")
-console.print(f"📊 Emergency Agent: {emergency_agent_success_rate:.1%} (using proper agent evaluation)")
+console.print(f"📊 Emergency Rules: {emergency_rule_success_rate:.1%}")
+console.print(f"📊 Emergency Agent: {emergency_agent_success_rate:.1%}")
 
 # %%
 # Store Emergency results
@@ -1829,19 +1903,16 @@ console.print(Panel(
 console.print("✅ Phase 3B Complete: Emergency service investigation finished")
 
 # %% [markdown]
-"""
-### 🚦 **Phase 3C: Traffic Service Investigation**
-Final service investigation following the same pattern
-"""
+# ### 🚦 **Phase 3C: Traffic Service Investigation**
+# Final service investigation following the same pattern
 
 # %%
 # Traffic Service
-class TrafficRuleBasedManager:
+class TrafficRuleBasedManager(weave.Model):
     """Rule-based traffic management for heat wave scenarios."""
-    
-    def __init__(self):
-        self.name = "Traffic Rule-Based Manager"
+    name: str = "Traffic Rule-Based Manager"
         
+    @weave.op
     def analyze_heat_wave_rules(self, scenario_state):
         """Apply heat wave specific traffic rules."""
         commands = []
@@ -1870,32 +1941,6 @@ class TrafficRuleBasedManager:
         
         return commands
 
-
-def create_traffic_agent():
-    """Create traffic management agent."""
-    actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
-    
-    traffic_agent = Agent(
-        role="Traffic Management Specialist", 
-        goal=f"Optimize traffic flow and emergency access across {len(available_sectors)} sectors",
-        backstory=(
-            f"Traffic engineer specializing in congestion management and emergency routing.\n\n"
-            f"Available resources:\n"
-            f"• Traffic sectors: {', '.join(available_sectors)}\n\n"
-            f"Decision criteria:\n"
-            f"• Redirect traffic in sectors >70% congestion\n"
-            f"• Block routes for emergency corridor creation\n"
-            f"• Take 4+ actions total (redirections + blockings)\n"
-            f"• Use actual resource IDs only"
-        ),
-        tools=[create_traffic_redirection_tool(), create_route_blocking_tool()],
-        verbose=True,
-        allow_delegation=False
-    )
-    
-    return traffic_agent
-
 # %%
 # Test Traffic Service: Rules vs Agent 
 console.print(Panel("🚦 Phase 3C: Traffic Service Investigation", border_style="cyan"))
@@ -1904,24 +1949,8 @@ traffic_rule_manager = TrafficRuleBasedManager()
 traffic_rule_commands = traffic_rule_manager.analyze_heat_wave_rules(
     HEAT_WAVE_SCENARIO.initial_state
 )
-
 # Actually execute traffic rule commands
-traffic_rule_results = []
-for command in traffic_rule_commands:
-    try:
-        cmd = Command(
-            service=ServiceType(command["service"]),
-            action=command["action"],
-            parameters=command.get("parameters", {})
-        )
-        result = executor.execute(cmd)
-        traffic_rule_results.append(result.success)
-    except Exception as e:
-        console.print(f"Traffic rule execution error: {e}")
-        traffic_rule_results.append(False)
-
-traffic_rule_success_rate = (sum(traffic_rule_results) / len(traffic_rule_results) 
-                             if traffic_rule_results else 0)
+traffic_rule_success_rate = execute_rule_commands(traffic_rule_commands)
 
 # %%
 # Use same evaluation method as agents for fair comparison
@@ -1944,47 +1973,285 @@ traffic_rule_evaluation = evaluate_scenario_commands(
 traffic_rule_success_rate = traffic_rule_evaluation.get('overall_score', traffic_rule_success_rate)
 
 # %%
-console.print("\n🤖 Testing Traffic Agent-Based Management")
-reset_all_service_states()
-activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Traffic Agent Test")
+class TrafficRedirection(BaseModel):
+    """Traffic redirection action."""
+    sector_id: str = Field(description="ID of the traffic sector to redirect")
+    target_reduction: float = Field(description="Target congestion reduction "
+                                               "(0.0-1.0)")
+    reason: str = Field(description="Reason for redirection")
 
-traffic_agent = create_traffic_agent()
 
-def create_traffic_task(traffic_agent):
-    """Create a task specifically for the Traffic agent."""
+class RouteBlocking(BaseModel):
+    """Route blocking action."""
+    sector_id: str = Field(description="ID of the sector to block")
+    duration_minutes: int = Field(description="Duration to block in minutes")
+    reason: str = Field(description="Reason for blocking")
+
+# %%
+traffic_redirection_tool_description = """
+Redirect traffic in congested sectors to alleviate congestion and improve flow.
+
+Parameters:
+- sector_id: ID of the traffic sector to redirect (available: {sectors})
+- target_reduction: Target congestion reduction percentage (0.0-1.0)
+- reason: Justification for the redirection
+
+Returns execution status with detailed feedback.
+"""
+
+# %%
+route_blocking_tool_description = """
+Block a route for emergency access to ensure safe passage for emergency vehicles.
+
+Parameters:
+- sector_id: ID of the sector to block (available: {sectors})
+- duration_minutes: Duration to block the route in minutes
+- reason: Reason for blocking the route
+
+Returns success/failure status.
+"""
+
+# %%
+@weave.op
+def create_traffic_redirection_tool(tool_description: str):
+    """
+    Create TrafficRedirectionTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
+
+    description = tool_description.format(
+        sectors=', '.join(available_sectors)
+    )
+    weave.publish(weave.StringPrompt(description), name="traffic_redirection_tool_prompt")
+    
+    class TrafficRedirectionTool(BaseTool):
+        name: str = "redirect_traffic"
+        description: str = ""
+        
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
+        
+        def _run(self, sector_id: str, target_reduction: float, reason: str) -> str:
+            cmd = Command(
+                service=ServiceType.TRAFFIC,
+                action="redirect",
+                parameters={"sector_id": sector_id, "target_reduction": target_reduction}
+            )
+            
+            executor = CommandExecutor()
+            result = executor.execute(cmd)
+            
+            # Track execution result
+            self._execution_results.append(result.success)
+            
+            status = "SUCCESS" if result.success else "FAILED"
+            console.print(f"🚦 Traffic: {sector_id} → {target_reduction:.1%} reduction ({reason}) - {status}")
+            
+            return f"Traffic redirection in sector {sector_id}: {status}"
+
+    return TrafficRedirectionTool(description=description)
+
+# %%
+@weave.op
+def create_route_blocking_tool(tool_description: str):
+    """
+    Create RouteBlockingTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
+
+    description = tool_description.format(
+        sectors=', '.join(available_sectors)
+    )
+    weave.publish(weave.StringPrompt(description), name="route_blocking_tool_prompt")
+    
+    class RouteBlockingTool(BaseTool):
+        name: str = "block_route"
+        description: str = ""
+        
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
+        
+        def _run(self, sector_id: str, duration_minutes: int, reason: str) -> str:
+            cmd = Command(
+                service=ServiceType.TRAFFIC,
+                action="block_route",
+                parameters={
+                    "sector": sector_id,
+                    "reason": reason,
+                    "duration_minutes": duration_minutes
+                }
+            )
+            
+            executor = CommandExecutor()
+            result = executor.execute(cmd)
+            
+            # Track execution result
+            self._execution_results.append(result.success)
+            
+            status = "SUCCESS" if result.success else "FAILED"
+            console.print(f"🚧 Route: {sector_id} blocked for {duration_minutes}min ({reason}) - {status}")
+            
+            return f"Route blocking in sector {sector_id}: {status}"
+    
+    return RouteBlockingTool(description=description)
+
+# %%
+class TrafficAgentConfig(BaseModel):
+    """Configuration for creating a traffic agent with its role, goal, and backstory."""
+    role: str = Field(..., description="The role/title of the agent")
+    goal: str = Field(..., description="The primary objective of the agent")
+    backstory: str = Field(..., description="The agent's background and context")
+
+# %%
+@weave.op
+def create_traffic_agent(config: TrafficAgentConfig):
+    """
+    Create the Traffic Management Specialist Agent with dynamic context.
+    
+    Args:
+        config: TrafficAgentConfig containing the base agent configuration
+    """
     actual_ids = get_actual_service_ids()
     available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
     
+    # Format the backstory with dynamic content
+    formatted_backstory = config.backstory.format(
+        sectors=', '.join(available_sectors),
+        sector_count=len(available_sectors)
+    )
+    
+    # Format the goal with dynamic content
+    formatted_goal = config.goal.format(
+        sector_count=len(available_sectors)
+    )
+    
+    traffic_specialist = Agent(
+        role=config.role,
+        goal=formatted_goal,
+        backstory=formatted_backstory,
+        tools=[create_traffic_redirection_tool(traffic_redirection_tool_description), 
+               create_route_blocking_tool(route_blocking_tool_description)],
+        verbose=False,
+        allow_delegation=False
+    )
+    
+    return traffic_specialist
+
+# %%
+# Define the base traffic configuration
+traffic_agent_config = TrafficAgentConfig(
+    role="Traffic Management Specialist",
+    goal="Optimize traffic flow and emergency access across {sector_count} sectors",
+    backstory=(
+        "Traffic engineer specializing in congestion management and emergency routing.\n\n"
+        "Available resources:\n"
+        "• Traffic sectors: {sectors}\n\n"
+        "Decision criteria:\n"
+        "• Redirect traffic in sectors >70% congestion\n"
+        "• Block routes for emergency corridor creation\n"
+        "• Take 4+ actions total (redirections + blockings)\n"
+        "• Use actual resource IDs only"
+    )
+)
+
+# %%
+
+class TrafficManagementPlan(BaseModel):
+    """Structured output for traffic management actions during heat wave."""
+    traffic_redirections: List[TrafficRedirection] = Field(
+        description="Traffic redirection actions to reduce congestion"
+    )
+    route_blocks: List[RouteBlocking] = Field(
+        description="Route blocking actions for emergency access"
+    )
+    emergency_corridors: str = Field(
+        description="Description of maintained emergency vehicle access routes"
+    )
+    coordination_notes: str = Field(
+        description="Notes for other agents about traffic impacts and "
+                   "emergency access"
+    )
+
+# %%
+class TrafficTaskConfig(BaseModel):
+    """Configuration for creating a traffic task with its description, expected output, and output schema."""
+    description: str = Field(..., description="The task description")
+    expected_output: str = Field(..., description="The expected output")
+    output_pydantic: Type[BaseModel] = Field(..., description="The output schema")
+
+# %%
+@weave.op
+def create_traffic_task(traffic_agent: Agent, config: TrafficTaskConfig):
+    """
+    Create a task specifically for the Traffic agent with dynamic context.
+    
+    Args:
+        config: TrafficTaskConfig containing the base task configuration
+        traffic_agent: The Traffic Management Specialist Agent
+    """
+    actual_ids = get_actual_service_ids()
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
+    
+    # Format the description with dynamic content
+    formatted_description = config.description.format(
+        sectors=', '.join(available_sectors)
+    )
+    
     traffic_task = Task(
-        description=(
-            f"Heat wave crisis: Traffic congestion blocking emergency vehicle access.\n\n"
-            f"Available sectors: {', '.join(available_sectors)}\n\n"
-            f"Required actions:\n"
-            f"1. Redirect traffic in sectors >70% congestion (reduce by 40-50%)\n"
-            f"2. Block 1-2 routes for dedicated emergency corridors (30-60 min)\n\n"
-            f"Success criteria: Execute 4+ total actions minimum\n"
-            f"Use only the sector IDs listed above"
-        ),
+        description=formatted_description,
         agent=traffic_agent,
-        expected_output="Traffic management plan with redirections and route blocks",
-        output_pydantic=TrafficManagementPlan
+        expected_output=config.expected_output,
+        output_pydantic=config.output_pydantic
     )
     return traffic_task
 
-traffic_task = create_traffic_task(traffic_agent)
+# %%
+# Define the base traffic task configuration
+traffic_task_config = TrafficTaskConfig(
+    description=(
+        "Heat wave crisis: Traffic congestion blocking emergency vehicle access.\n\n"
+        "Available sectors: {sectors}\n\n"
+        "Required actions:\n"
+        "1. Redirect traffic in sectors >70% congestion (reduce by 40-50%)\n"
+        "2. Block 1-2 routes for dedicated emergency corridors (30-60 min)\n\n"
+        "Success criteria: Execute 4+ total actions minimum\n"
+        "Use only the sector IDs listed above"
+    ),
+    expected_output="Traffic management plan with redirections and route blocks",
+    output_pydantic=TrafficManagementPlan
+)
+
+# %%
+console.print("\n🤖 Testing Traffic Agent-Based Management")
+activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Traffic Agent Test")
+
+traffic_agent = create_traffic_agent(traffic_agent_config)
+traffic_task = create_traffic_task(traffic_agent, traffic_task_config)
 traffic_crew = Crew(
     agents=[traffic_agent],
     tasks=[traffic_task],
     process=Process.sequential,
-    verbose=True
+    verbose=False
 )
 
 traffic_agent_result = traffic_crew.kickoff(inputs={
     "scenario_name": HEAT_WAVE_SCENARIO.name,
     "scenario_description": HEAT_WAVE_SCENARIO.description
 })
-
-# %%
 # Use agent converter to properly evaluate traffic agent results
 console.print("📊 Evaluating traffic agent with proper agent converter...")
 traffic_agent_success_rate, traffic_agent_commands, traffic_agent_evaluation = convert_and_evaluate_agent_commands(
@@ -1993,8 +2260,8 @@ traffic_agent_success_rate, traffic_agent_commands, traffic_agent_evaluation = c
     scenario_type=ScenarioType.GRID_SURGE
 )
 
-console.print(f"📊 Traffic Rules: {traffic_rule_success_rate:.1%} ({sum(traffic_rule_results)}/{len(traffic_rule_results)})")
-console.print(f"📊 Traffic Agent: {traffic_agent_success_rate:.1%} (using proper agent evaluation)")
+console.print(f"📊 Traffic Rules: {traffic_rule_success_rate:.1%}")
+console.print(f"📊 Traffic Agent: {traffic_agent_success_rate:.1%}")
 
 # %%
 # Store Traffic results
@@ -2028,33 +2295,32 @@ console.print("✅ Phase 3C Complete: Traffic service investigation finished")
 save_experiment_results(workshop_results)
 
 # %% [markdown]
-"""
-## 🤝 **PHASE 4: Full System Comparison**
-
-**🎓 Educational Goal**: Compare complete rule-based system vs complete agent system
-
-Now that we understand each service individually, let's test complete systems:
-1. **Full Rule-Based System**: All rules coordinated
-2. **Full Agent System**: Manager + Specialists coordination
-"""
+# ## 🤝 **PHASE 4: Full System Comparison**
+# 
+# **🎓 Educational Goal**: Compare complete rule-based system vs complete agent system
+# 
+# Now that we understand each service individually, let's test complete systems:
+# 1. **Full Rule-Based System**: All rules coordinated
+# 2. **Full Agent System**: Manager + Specialists coordination
 
 # %%
 # Complete Rule-Based System
-class HeatWaveRuleBasedSystem:
+class HeatWaveRuleBasedSystem(weave.Model):
     """Complete rule-based system for heat wave crisis management."""
-    
-    def __init__(self):
-        self.name = "Heat Wave Rule-Based Crisis Management System"
-        self.grid_manager = GridRuleBasedManager()
-        self.emergency_manager = EmergencyRuleBasedManager()
-        self.traffic_manager = TrafficRuleBasedManager()
-        
-    def solve_heat_wave_crisis(self):
+    name: str = "Heat Wave Rule-Based Crisis Management System"
+    grid_manager: GridRuleBasedManager = GridRuleBasedManager()
+    emergency_manager: EmergencyRuleBasedManager = EmergencyRuleBasedManager()
+    traffic_manager: TrafficRuleBasedManager = TrafficRuleBasedManager()
+    scenario_definition: ScenarioDefinition = HEAT_WAVE_SCENARIO
+
+    @weave.op
+    def solve_heat_wave_crisis(self, scenario_state: Any = None):
         """Apply all heat wave rules across all services."""
         console.print("🎯 Applying Complete Heat Wave Rule-Based System...")
         
         # Get current scenario state
-        scenario_state = HEAT_WAVE_SCENARIO.initial_state
+        if scenario_state is None:
+            scenario_state = self.scenario_definition.initial_state
         
         all_commands = []
         
@@ -2092,7 +2358,7 @@ class HeatWaveRuleBasedSystem:
         
         return all_commands, success_rate
 
-# Complete Agent System with Manager
+@weave.op
 def create_crisis_manager_agent():
     """Create a manager agent that coordinates specialist agents."""
     crisis_manager = Agent(
@@ -2111,67 +2377,141 @@ def create_crisis_manager_agent():
         • Traffic team: Execute 4+ actions (redirections + route blocks)
         • Total target: 15+ coordinated actions across all services""",
         tools=[],  # Manager agents cannot have tools in hierarchical process
-        verbose=True,
+        verbose=False,
         allow_delegation=True,  # Key: Enables hierarchical management
         llm="gpt-4o"  # Use high-capability model for manager as per CrewAI docs
     )
     
     return crisis_manager
 
+# # @weave.op
+# def create_agent_system():
+#     """Create complete agent system with manager and specialists."""
+#     # Create the crisis manager for coordination
+#     crisis_manager = create_crisis_manager_agent()
+    
+#     # Create specialist agents (reuse from service investigation)
+#     grid_agent = create_grid_agent(grid_agent_config)
+#     emergency_agent = create_emergency_agent(emergency_agent_config)
+#     traffic_agent = create_traffic_agent(traffic_agent_config)
+    
+#     # Create manager coordination task - simplified and clear
+#     coordination_task = Task(
+#         description="""Heat wave crisis requiring coordinated multi-service response.
 
-def create_agent_system():
-    """Create complete agent system with manager and specialists."""
-    # Create the crisis manager for coordination
-    crisis_manager = create_crisis_manager_agent()
+#         Delegate tasks to specialist agents:
+        
+#         1. Grid Management Specialist:
+#            - Reduce capacity in zones >90% load to 0.8 or lower
+#            - Set all critical infrastructure to 'critical' priority
+#            - Target: 6+ total actions
+        
+#         2. Emergency Response Coordinator:
+#            - Assign all drones to incidents by urgency priority
+#            - Update incident statuses to track progress
+#            - Target: 6+ total actions
+        
+#         3. Traffic Management Specialist:
+#            - Redirect traffic in sectors >70% congestion
+#            - Block routes for emergency corridors
+#            - Target: 4+ total actions
+        
+#         Overall target: 15+ coordinated actions across all services""",
+#         agent=crisis_manager,
+#         expected_output="Coordination plan with specific action targets for each specialist"
+#     )
     
-    # Create specialist agents (reuse from service investigation)
-    grid_agent = create_grid_agent()
-    emergency_agent = create_emergency_tools_and_agent()
-    traffic_agent = create_traffic_agent()
+#     # Create specialist tasks using existing factory functions (reuse from service investigation)
+#     grid_task = create_grid_task(grid_agent, grid_task_config)
+#     emergency_task = create_emergency_task(emergency_agent, emergency_task_config)
+#     traffic_task = create_traffic_task(traffic_agent, traffic_task_config)
     
-    # Create manager coordination task - simplified and clear
-    coordination_task = Task(
-        description="""Heat wave crisis requiring coordinated multi-service response.
+#     # Create crew with hierarchical process and manager
+#     agent_crew = Crew(
+#         agents=[grid_agent, emergency_agent, traffic_agent],  # Only worker agents, not manager
+#         tasks=[coordination_task, grid_task, emergency_task, traffic_task],
+#         process=Process.hierarchical,
+#         manager_agent=crisis_manager,  # Manager specified separately
+#         verbose=False,
+#         max_iter=10,  # Limit iterations to prevent infinite loops
+#         memory=True   # Enable memory for better coordination
+#     )
+    
+#     return agent_crew
 
-        Delegate tasks to specialist agents:
+class AgentBasedSystem(weave.Model):
+    """Complete agent-based system for heat wave crisis management."""
+    name: str = "Heat Wave Agent-Based Crisis Management System"
+    grid_agent: Agent = None
+    emergency_agent: Agent = None
+    traffic_agent: Agent = None
+    crisis_manager: Agent = None
+    scenario_definition: ScenarioDefinition = HEAT_WAVE_SCENARIO
+
+    def __init__(self):
+        super().__init__()
+        # Create the crisis manager for coordination
+        self.crisis_manager = create_crisis_manager_agent()
         
-        1. Grid Management Specialist:
-           - Reduce capacity in zones >90% load to 0.8 or lower
-           - Set all critical infrastructure to 'critical' priority
-           - Target: 6+ total actions
+        # Create specialist agents
+        self.grid_agent = create_grid_agent(grid_agent_config)
+        self.emergency_agent = create_emergency_agent(emergency_agent_config)
+        self.traffic_agent = create_traffic_agent(traffic_agent_config)
+
+    @weave.op
+    def solve_heat_wave_crisis(self, scenario_state: Any = None):
+        """Execute the complete agent system to solve the heat wave crisis."""
+        # Get current scenario state
+        if scenario_state is None:
+            scenario_state = self.scenario_definition.initial_state
+        # Create manager coordination task
+        coordination_task = Task(
+            description="""Heat wave crisis requiring coordinated multi-service response.
+            Scenario: {scenario_state}
+
+            Delegate tasks to specialist agents:
+            
+            1. Grid Management Specialist:
+               - Reduce capacity in zones >90% load to 0.8 or lower
+               - Set all critical infrastructure to 'critical' priority
+               - Target: 6+ total actions
+            
+            2. Emergency Response Coordinator:
+               - Assign all drones to incidents by urgency priority
+               - Update incident statuses to track progress
+               - Target: 6+ total actions
+            
+            3. Traffic Management Specialist:
+               - Redirect traffic in sectors >70% congestion
+               - Block routes for emergency corridors
+               - Target: 4+ total actions
+            
+            Overall target: 15+ coordinated actions across all services""",
+            agent=self.crisis_manager,
+            expected_output="Coordination plan with specific action targets for each specialist"
+        )
         
-        2. Emergency Response Coordinator:
-           - Assign all drones to incidents by urgency priority
-           - Update incident statuses to track progress
-           - Target: 6+ total actions
+        # Create specialist tasks
+        grid_task = create_grid_task(self.grid_agent, grid_task_config)
+        emergency_task = create_emergency_task(self.emergency_agent, emergency_task_config)
+        traffic_task = create_traffic_task(self.traffic_agent, traffic_task_config)
         
-        3. Traffic Management Specialist:
-           - Redirect traffic in sectors >70% congestion
-           - Block routes for emergency corridors
-           - Target: 4+ total actions
+        # Create crew with hierarchical process and manager
+        agent_crew = Crew(
+            agents=[self.grid_agent, self.emergency_agent, self.traffic_agent],
+            tasks=[coordination_task, grid_task, emergency_task, traffic_task],
+            process=Process.hierarchical,
+            manager_agent=self.crisis_manager,
+            verbose=False,
+            max_iter=10,
+            memory=True
+        )
         
-        Overall target: 15+ coordinated actions across all services""",
-        agent=crisis_manager,
-        expected_output="Coordination plan with specific action targets for each specialist"
-    )
-    
-    # Create specialist tasks using existing factory functions (reuse from service investigation)
-    grid_task = create_grid_task(grid_agent)
-    emergency_task = create_emergency_task(emergency_agent)
-    traffic_task = create_traffic_task(traffic_agent)
-    
-    # Create crew with hierarchical process and manager
-    agent_crew = Crew(
-        agents=[grid_agent, emergency_agent, traffic_agent],  # Only worker agents, not manager
-        tasks=[coordination_task, grid_task, emergency_task, traffic_task],
-        process=Process.hierarchical,
-        manager_agent=crisis_manager,  # Manager specified separately
-        verbose=True,
-        max_iter=10,  # Limit iterations to prevent infinite loops
-        memory=True   # Enable memory for better coordination
-    )
-    
-    return agent_crew
+        # Execute the crew
+        return agent_crew.kickoff(inputs={
+            "scenario_name": self.scenario_definition.name,
+            "scenario_description": self.scenario_definition.description
+        })
 
 # %%
 # Test Complete Systems
@@ -2179,11 +2519,11 @@ console.print(Panel("🤝 Phase 4: Full System Comparison", border_style="yellow
 
 # Test 1: Complete Rule-Based System
 console.print("\n📏 Testing Complete Rule-Based System")
-reset_all_service_states()
 activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Full Rules Test")
 
 rule_based_system = HeatWaveRuleBasedSystem()
 rule_commands, rule_success_rate = rule_based_system.solve_heat_wave_crisis()
+rule_success_rate = execute_rule_commands(rule_commands)
 
 console.print("📊 Evaluating rule-based system with same method as agents...")
 rule_command_dicts = []
@@ -2215,16 +2555,11 @@ console.print(Panel(
 # %%
 # Test 2: Complete Agent System
 console.print("\n🤖 Testing Complete Agent System")
-reset_all_service_states()
 activate_scenario(HEAT_WAVE_SCENARIO, "Heat Wave Crisis - Full Agent Test")
 
-agent_system = create_agent_system()
+agent_system = AgentBasedSystem()
+agent_result = agent_system.solve_heat_wave_crisis()
 
-# Execute agent system
-agent_result = agent_system.kickoff(inputs={
-    "scenario_name": HEAT_WAVE_SCENARIO.name,
-    "scenario_description": HEAT_WAVE_SCENARIO.description
-})
 
 # Use agent converter to properly evaluate agent results
 console.print("🔄 Converting agent results to commands for evaluation...")
@@ -2268,17 +2603,15 @@ console.print("✅ Phase 4 Complete: Full system comparison finished")
 save_experiment_results(workshop_results)
 
 # %% [markdown]
-"""
-## 🎯 **PHASE 5: Adaptability Challenge**
-
-**🎓 Educational Goal**: Test system adaptability with a completely different scenario
-
-Now let's test the critical difference: **adaptability**. We'll create a medical emergency 
-scenario that's very different from our heat wave training.
-
-- **Rule-based systems**: Should fail (designed only for heat waves)
-- **Agent systems**: Should adapt (reasoning capabilities)
-"""
+# ## 🎯 **PHASE 5: Adaptability Challenge**
+# 
+# **🎓 Educational Goal**: Test system adaptability with a completely different scenario
+# 
+# Now let's test the critical difference: **adaptability**. We'll create a medical emergency 
+# scenario that's very different from our heat wave training.
+# 
+# - **Rule-based systems**: Should fail (designed only for heat waves)
+# - **Agent systems**: Should adapt (reasoning capabilities)
 
 # %%
 def create_medical_emergency_scenario():
@@ -2373,7 +2706,6 @@ def test_adaptability():
     
     # CRITICAL: Reset state and activate the medical scenario properly
     console.print("🔄 Activating medical emergency scenario...")
-    reset_all_service_states()
     scenario_activated = activate_scenario(medical_scenario, "Medical Emergency Test")
     if not scenario_activated:
         console.print("[yellow]⚠️ Medical scenario activation had issues, but continuing...[/yellow]")
@@ -2391,13 +2723,8 @@ def test_adaptability():
         medical_scenario_state = medical_scenario.initial_state
         
         # Try to apply heat wave rules to medical scenario (this should fail/be ineffective)
-        all_commands = []
-        
-        # Apply heat wave rules to medical scenario (inappropriate)
-        all_commands.extend(rule_based_system.grid_manager.analyze_heat_wave_rules(medical_scenario_state))
-        all_commands.extend(rule_based_system.emergency_manager.analyze_heat_wave_rules(medical_scenario_state))
-        all_commands.extend(rule_based_system.traffic_manager.analyze_heat_wave_rules(medical_scenario_state))
-        
+        all_commands = rule_based_system.solve_heat_wave_crisis(medical_scenario_state)
+
         console.print(f"📋 Heat wave rules generated {len(all_commands)} commands for medical scenario")
         
         # Execute commands against medical scenario
@@ -2532,17 +2859,15 @@ console.print("✅ Phase 5 Complete: Adaptability challenge finished")
 save_experiment_results(workshop_results)
 
 # %% [markdown]
-"""
-## 🔌 **PHASE 6: Model Context Protocol (MCP) Integration**
-
-**🎓 Educational Goal**: Demonstrate production-ready extensibility with dynamic tool discovery
-
-**🎯 The Problem with Static Tool Assignment**: Our current agents have hardcoded tools - 
-they can only use what we programmed them with. But what happens when new external 
-services come online during a crisis?
-
-**🔑 MCP Solution**: Agents can discover and use new tools dynamically at runtime.
-"""
+# ## 🔌 **PHASE 6: Model Context Protocol (MCP) Integration**
+# 
+# **🎓 Educational Goal**: Demonstrate production-ready extensibility with dynamic tool discovery
+# 
+# **🎯 The Problem with Static Tool Assignment**: Our current agents have hardcoded tools - 
+# they can only use what we programmed them with. But what happens when new external 
+# services come online during a crisis?
+# 
+# **🔑 MCP Solution**: Agents can discover and use new tools dynamically at runtime.
 
 # %%
 # Simulate new external services coming online during crisis
@@ -2615,7 +2940,6 @@ class PredictiveAnalyticsTool(BaseTool):
         
         console.print("🔮 Predictive Analytics: Generated 4-hour forecast")
         return f"FORECAST: {predictions['grid_stability_forecast']}. Predicted {predictions['new_incidents_predicted']} new incidents. {predictions['resource_shortage_risk']}. Evacuation window: {predictions['optimal_evacuation_window']}"
-
 
 # %%
 class DynamicMCPRegistry:
@@ -2708,12 +3032,12 @@ def demonstrate_mcp_value():
     
     # Register our existing workshop tools as "static" (known at startup)
     console.print("📦 Registering Static Tools (Known at Startup)")
-    dynamic_mcp.register_static_tool(create_grid_zone_adjustment_tool(), "power_management")
-    dynamic_mcp.register_static_tool(create_infrastructure_priority_tool(), "power_management")
-    dynamic_mcp.register_static_tool(create_drone_assignment_tool(), "emergency_response")
-    dynamic_mcp.register_static_tool(create_incident_update_tool(), "emergency_response")
-    dynamic_mcp.register_static_tool(create_traffic_redirection_tool(), "traffic_management")
-    dynamic_mcp.register_static_tool(create_route_blocking_tool(), "traffic_management")
+    dynamic_mcp.register_static_tool(create_grid_zone_adjustment_tool(grid_zone_adjustment_tool_description), "power_management")
+    dynamic_mcp.register_static_tool(create_infrastructure_priority_tool(infrastructure_priority_tool_description), "power_management")
+    dynamic_mcp.register_static_tool(create_drone_assignment_tool(drone_assignment_tool_description), "emergency_response")
+    dynamic_mcp.register_static_tool(create_incident_update_tool(incident_update_tool_description), "emergency_response")
+    dynamic_mcp.register_static_tool(create_traffic_redirection_tool(traffic_redirection_tool_description), "traffic_management")
+    dynamic_mcp.register_static_tool(create_route_blocking_tool(route_blocking_tool_description), "traffic_management")
     
     # Simulate crisis escalation - new external services come online
     console.print("\n🚨 CRISIS ESCALATION: New External Services Coming Online")
@@ -2744,7 +3068,7 @@ def demonstrate_mcp_value():
             You can only use the tools you were programmed with at startup.
             You cannot discover or use new external services that come online.""",
             tools=dynamic_mcp.get_static_tools_only(),  # Only static tools
-            verbose=True,
+            verbose=False,
             allow_delegation=False
         )
         
@@ -2775,7 +3099,7 @@ def demonstrate_mcp_value():
             You can discover and use new external services that come online during the crisis.
             You adapt your strategy based on newly available capabilities and intelligence.""",
             tools=dynamic_mcp.get_all_available_tools(),  # Static + discovered tools
-            verbose=True,
+            verbose=False,
             allow_delegation=False
         )
         
@@ -2813,7 +3137,7 @@ def demonstrate_mcp_value():
             agents=[static_agent],
             tasks=[static_task],
             process=Process.sequential,
-            verbose=True
+            verbose=False
         )
         
         console.print(f"🔒 Static Agent Tools: {len(dynamic_mcp.get_static_tools_only())} tools")
@@ -2863,7 +3187,7 @@ def demonstrate_mcp_value():
             agents=[mcp_agent],
             tasks=[mcp_task],
             process=Process.sequential,
-            verbose=True
+            verbose=False
         )
         
         console.print(f"🔍 MCP Agent Tools: {len(dynamic_mcp.get_all_available_tools())} tools")
@@ -2929,25 +3253,23 @@ mcp_registry = demonstrate_mcp_value()
 console.print("✅ Phase 6 Complete: MCP integration demonstrated")
 
 # %% [markdown]
-"""
-## 🎓 **Workshop Complete: Agentic AI Systems Mastery**
-
-**🎯 Educational Objectives Achieved:**
-
-1. **Tool Use & Task Planning**: Built specialized tools for each service domain
-2. **Autonomy**: Created agents that make independent decisions based on scenario analysis
-3. **Multi-Agent Collaboration**: Orchestrated coordinated response across grid, emergency, and traffic services  
-4. **External System Integration**: Demonstrated MCP for dynamic tool discovery
-5. **Adaptive Behavior**: Showed agent superiority over rigid rule-based approaches
-
-**🔑 Key Production Insights:**
-- **Service-by-Service Investigation**: Build understanding incrementally before coordination
-- **Structured Outputs**: Ensure consistent communication between agents and systems
-- **Dynamic Tool Discovery**: MCP enables runtime adaptation to new external services
-- **Quantitative Evaluation**: Measure performance objectively to validate approaches
-
-**🚀 Your Agent System is Production-Ready!**
-"""
+# ## 🎓 **Workshop Complete: Agentic AI Systems Mastery**
+# 
+# **🎯 Educational Objectives Achieved:**
+# 
+# 1. **Tool Use & Task Planning**: Built specialized tools for each service domain
+# 2. **Autonomy**: Created agents that make independent decisions based on scenario analysis
+# 3. **Multi-Agent Collaboration**: Orchestrated coordinated response across grid, emergency, and traffic services  
+# 4. **External System Integration**: Demonstrated MCP for dynamic tool discovery
+# 5. **Adaptive Behavior**: Showed agent superiority over rigid rule-based approaches
+# 
+# **🔑 Key Production Insights:**
+# - **Service-by-Service Investigation**: Build understanding incrementally before coordination
+# - **Structured Outputs**: Ensure consistent communication between agents and systems
+# - **Dynamic Tool Discovery**: MCP enables runtime adaptation to new external services
+# - **Quantitative Evaluation**: Measure performance objectively to validate approaches
+# 
+# **🚀 Your Agent System is Production-Ready!**
 
 # %%
 # Workshop completion with performance metrics and key insights

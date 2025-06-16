@@ -17,6 +17,7 @@ from workshop.state_models import (
 )
 from workshop.command import Command, ServiceType, CommandExecutor
 from datetime import datetime, timedelta
+import weave
 
 console = Console()
 
@@ -1150,3 +1151,43 @@ def create_workshop_reflection_questions():
         title="Workshop Reflection",
         border_style="purple"
     )) 
+
+@weave.op
+def execute_rule_commands(commands):
+    """
+    Execute a list of commands using the CommandExecutor and track their success.
+    
+    Args:
+        commands: List of command dictionaries containing service, action, and parameters
+        
+    Returns:
+        float: Success rate of command execution (0.0 to 1.0)
+    """
+    executor = CommandExecutor()
+    execution_results = []
+
+    for i, command in enumerate(commands, 1):
+        console.print(f"\n📏 Command {i}: {command.get('rule', 'No rule description')}")
+        
+        try:
+            cmd = Command(
+                service=ServiceType(command["service"]),
+                action=command["action"],
+                parameters=command.get("parameters", {})
+            )
+            result = executor.execute(cmd)
+            execution_results.append(result.success)
+            
+            status = "✅ SUCCESS" if result.success else "❌ FAILED"
+            console.print(f"  {status}: {command['service']}.{command['action']}")
+            
+            if not result.success:
+                console.print(f"    Error: {result.error}")
+                
+        except Exception as e:
+            console.print(f"  ❌ EXECUTION ERROR: {e}")
+            execution_results.append(False)
+
+    success_rate = (sum(execution_results) / len(execution_results) 
+                   if execution_results else 0)
+    return success_rate

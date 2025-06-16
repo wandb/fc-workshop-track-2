@@ -126,7 +126,7 @@ from workshop.service_management import (
 )
 
 # Import from afternoon session utilities
-from workshop.afternoon_session_utils import (
+from workshop.session_utils import (
     create_evaluation_scenarios,
     create_optimized_grid_agent,
     create_optimized_emergency_agent,

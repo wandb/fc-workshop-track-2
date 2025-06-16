@@ -23,7 +23,7 @@ class VerbosityLevel(str, Enum):
 
 # Default configuration
 DEFAULT_CONFIG = {
-    "verbosity": VerbosityLevel.MINIMAL,
+    "verbosity": VerbosityLevel.NORMAL,
     "log_to_file": False,
     "log_file": "sentinel_grid.log",
     "show_commands": False,
@@ -63,7 +63,7 @@ def update_config(new_config: Dict[str, Any]) -> None:
     _configure_logging()
 
 # Set verbosity level (can be overridden with environment variable)
-VERBOSITY_LEVEL = os.environ.get("VERBOSITY_LEVEL", "debug").lower()  # Ensure lowercase
+VERBOSITY_LEVEL = os.environ.get("VERBOSITY_LEVEL", "normal").lower()  # Ensure lowercase
 try:
     verbosity = VerbosityLevel(VERBOSITY_LEVEL)
 except ValueError:
