@@ -785,39 +785,7 @@ Use only the actual resource IDs provided in the system context and the valid ac
                 
         except (json.JSONDecodeError, ValueError) as e:
             console.print(f"⚠️ JSON parsing failed: {e}")
-            # Fallback command generation using actual system state
-            available_zones = actual_ids.get('grid_zones', ['Z001'])
-            available_drones = actual_ids.get('drones', ['D001']) 
-            available_incidents = actual_ids.get('incidents', ['E-1001'])
-            available_sectors = actual_ids.get('traffic_sectors', ['S001'])
-            
-            actions = [
-                {
-                    "service": "grid",
-                    "action": "adjust_zone",
-                    "parameters": {"zone_id": available_zones[0], "capacity": 0.85},
-                    "reasoning": "Reduce load on most stressed zone"
-                },
-                {
-                    "service": "grid", 
-                    "action": "set_priority",
-                    "parameters": {"infrastructure_id": "hospital", "level": "critical"},
-                    "reasoning": "Ensure critical infrastructure has power priority"
-                },
-                {
-                    "service": "emergency",
-                    "action": "assign_drone", 
-                    "parameters": {"drone_id": available_drones[0], "incident_id": available_incidents[0]},
-                    "reasoning": "Assign first available drone to highest priority incident"
-                },
-                {
-                    "service": "traffic",
-                    "action": "redirect",
-                    "parameters": {"sector_id": available_sectors[0], "target_reduction": 0.4},
-                    "reasoning": "Reduce congestion in primary traffic sector"
-                }
-            ]
-            console.print(f"🔄 Using fallback strategy with {len(actions)} reasonable actions")
+            actions = []
         
     except Exception as e:
         console.print(f"[red]❌ LLM call failed: {e}[/red]")
