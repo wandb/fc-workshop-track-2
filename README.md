@@ -32,17 +32,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 uv sync
 ```
 
-### **2. Configure Environment Variables**
-```bash
-# Copy example environment file
-cp .env.example .env
-
-# Edit .env and add your keys:
-# OPENAI_API_KEY=your_openai_key_here
-# WANDB_API_KEY=your_wandb_key_here
-```
-
-### **3. Start Workshop**
+### **2. Start Workshop**
 ```bash
 # Option 1: Full workshop experience (recommended)
 python -m ipykernel install --user --name=.venv --display-name "Python (.venv)"
