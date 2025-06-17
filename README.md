@@ -1,150 +1,213 @@
 # 🤖 Agentic AI Systems Workshop
 
-## 🏙️ Operation SENTINEL GRID
+> **Learn to build, optimize, and evaluate production-ready multi-agent AI systems**
 
-NeoCatalis, a fully connected smart city, has experienced a systemic AI blackout. This workshop simulates rebuilding the city's autonomy using modern agentic principles through two comprehensive sessions.
+Build autonomous agents that coordinate across complex scenarios using CrewAI, evaluate them with LLM-as-a-Judge, and optimize for production deployment.
+
+**Powered by [Weave](https://weave-docs.wandb.ai)**: LLM application evaluation and tracing
+
 
 ---
 
 ## 🚀 **Quick Start**
 
-### **Setup**
+### **Prerequisites**
+- Python 3.11+
+- OpenAI API key
+- Weights & Biases account (for evaluation tracking)
+- Note: Tested with Linux and MacOS. Windows was not tested.
+
+### **1. Setup Environment**
 ```bash
-# Install uv package manager
+# Clone and enter the repository
+git clone https://github.com/wandb/fc-workshop-track-2
+cd fc-workshop-track-2
+
+# Install uv (modern Python package manager)
 pip install uv
 
-# Create and activate virtual environment
+# Create virtual environment and install dependencies
 uv venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-
-# Install dependencies
 uv sync
-
-# Set up environment variables
-cp .env.example .env
-# Add your AWS credentials to .env (openai for now)
-# Add your wandb API Key to .env
 ```
 
-### **Run Workshop**
+### **2. Configure Environment Variables**
 ```bash
-# Morning session (3 hours)
-python morning_session.py
+# Copy example environment file
+cp .env.example .env
 
-# Afternoon session (3 hours) 
-python afternoon_session.py
+# Edit .env and add your keys:
+# OPENAI_API_KEY=your_openai_key_here
+# WANDB_API_KEY=your_wandb_key_here
+```
+
+### **3. Start Workshop**
+```bash
+# Option 1: Full workshop experience (recommended)
+jupyter lab
+
+# Option 2: Individual sessions
+jupyter lab morning_session.ipynb    # 3 hours - Building agents
+jupyter lab afternoon_session.ipynb  # 3 hours - Optimization & evaluation
 ```
 
 ---
 
-## 🌅 **MORNING SESSION: Building Agentic AI Systems**
+## 🎯 **What You'll Build**
 
-### Learning Objective
-Learn to design and orchestrate agentic AI systems using modern frameworks. Cover tool use, task planning, autonomy, multi-agent collaboration, and Model Context Protocol (MCP) for dynamic external system integration.
+### **Morning Session (3 hours): Architecting and Orchestrating AI Agents**
 
-### What You'll Build
-- Multi-agent systems with specialized domain expertise
-- Dynamic tool discovery and structured outputs
-- Production-ready agent orchestration patterns
-- Comparative evaluation: Rules vs Agents vs LLM chains
+**🎓 Core Learning**: Design and orchestrate agentic AI systems using modern frameworks, standards, and best practices. Master foundational design principles including tool use, task planning, autonomy, and multi-agent collaboration.
 
-### Key Phases
-1. **Environment Setup** - Service discovery and crisis scenarios
-2. **LLM Chain Analysis** - Why sophisticated prompting isn't enough
-3. **Service Investigation** - Grid, Emergency, Traffic (Rules → Tools → Agents)
-4. **System Comparison** - Full rule-based vs agent-based systems
-5. **Adaptability Test** - New scenario evaluation
-6. **MCP Integration** - Dynamic tool discovery
-7. **Results Analysis** - Performance comparison and insights
+**Key Architectural Concepts:**
+- **🏗️ Agent Design Patterns**: Build autonomous agents that make decisions, invoke tools, and accomplish complex tasks without rigid pre-programmed flows
+- **🔧 Dynamic Tool Integration**: Learn how emerging standards like Model Context Protocol (MCP) simplify agent discovery and use of external tools
+- **🤝 Multi-Agent Coordination**: Orchestrate specialized agents working together through hierarchical and collaborative patterns
+- **⚖️ Architecture Comparison**: Quantitatively compare rule-based vs agent-based vs LLM chain approaches
+- **🔄 Adaptive Systems**: Create systems that adapt to new scenarios and integrate external systems dynamically
+
+**Practical Implementation:**
+- Smart city crisis management system with Grid, Emergency, and Traffic coordination
+- Specialized tools with Pydantic models for reliable agent communication
+- Real-time decision making under resource constraints and changing conditions
+
+```python
+# Example: Building autonomous decision-making agents
+crisis_crew = Crew(
+    agents=[grid_specialist, emergency_coordinator, traffic_manager, feedback_specialist],
+    tasks=[assess_situation, coordinate_response, adapt_to_changes],
+    process=Process.hierarchical  # Orchestration pattern
+)
+```
+
+### **Afternoon Session (3 hours): Optimizing and Evaluating Agentic AI Applications**
+
+**🎓 Core Learning**: Shift from building to optimizing and evaluating agentic AI applications. Implement sophisticated evaluation strategies that measure agent decision-making quality, optimize responsiveness, and incorporate human feedback for continuous adaptation.
+
+**Key Optimization Concepts:**
+- **📏 Multi-Dimensional Evaluation**: Implement evaluation strategies beyond simple success rates - measure decision quality, efficiency, and adaptability
+- **⚡ Performance Optimization**: Reduce latency through parallel processing, caching strategies, and dynamic model selection  
+- **🔄 Human Feedback Integration**: Build systems that learn and adapt from real-world input and iterative enhancement
+- **👁️ Agent Observability**: Comprehensive monitoring and tracing of agent behavior and decision-making processes
+- **🏗️ Production Scaling**: Use MCP standards to simplify scaling, monitoring, and integration with external systems
+- **🎯 Online Evaluation**: Real-time assessment strategies for continuous improvement in production environments
+
+**Practical Implementation:**
+- LLM-as-a-Judge evaluation frameworks for decision quality assessment
+- Performance optimization techniques achieving sub-2-second response times
+- Human feedback loops that modify agent behavior based on real-world outcomes
+- Production monitoring with complete observability into agent reasoning
+
+```python
+# Example: Comprehensive evaluation and optimization
+@weave.op()
+async def evaluate_and_optimize_agents(scenario):
+    # Multi-dimensional evaluation
+    performance_metrics = await evaluate_decision_quality(agent_response)
+    
+    # Dynamic optimization based on results
+    optimized_config = await adapt_based_on_feedback(performance_metrics)
+    
+    return optimized_agent_system
+```
 
 ---
 
-## 🌆 **AFTERNOON SESSION: Optimization & Evaluation**
+## 🏗️ **Technical Architecture**
 
-### Learning Objective
-Shift from building to optimizing agentic AI applications. Implement evaluation strategies, optimize responsiveness, integrate human feedback, and prepare for production deployment.
+### **Services & APIs**
+- **Grid Management** (`localhost:8002`): Power distribution, load balancing, infrastructure priorities
+- **Emergency Response** (`localhost:8003`): Drone deployment, incident management, resource allocation  
+- **Traffic Coordination** (`localhost:8004`): Flow optimization, emergency corridors, congestion management
+- **Scenario Management** (`localhost:8005`): Crisis simulation and state management
 
-### What You'll Build
-- Comprehensive evaluation frameworks with LLM-as-a-Judge
-- Performance optimization techniques
-- Human feedback integration systems
-- Production monitoring and scalability patterns
-- Competitive optimization showcase
+### **Key Technologies**
+- **[Weave](https://weave-docs.wandb.ai)**: LLM application evaluation and tracing
+- **[CrewAI](https://github.com/joaomdmoura/crewAI)**: Multi-agent orchestration framework
+- **[Pydantic](https://docs.pydantic.dev/)**: Structured outputs and data validation
+- **[FastAPI](https://fastapi.tiangolo.com/)**: High-performance async service APIs
 
-### Key Phases
-1. **Evaluation Framework** - Multi-dimensional metrics and LLM-as-a-Judge
-2. **Baseline Measurement** - Performance testing across scenarios
-3. **MCP Integration** - Dynamic service discovery and tool registration
-4. **Human Feedback** - Agent adaptation and behavioral modification
-5. **Production Patterns** - Scalable architecture design
-6. **Final Competition** - 6-dimensional scoring and leaderboard
-
----
-
-## 🏗️ **Technical Infrastructure**
-
-### SENTINEL GRID Services
-- **⚡ Grid Management**: Power distribution, load balancing, infrastructure priorities
-- **🚁 Emergency Response**: Drone deployment, incident management, resource allocation  
-- **🚦 Traffic Coordination**: Flow optimization, emergency corridors, congestion management
-
-### Key Scenarios
-- Heat Wave Crisis, Cyber Attack, Major Earthquake, Festival Emergency, Complex Multi-Domain Crisis
-
-### Evaluation Metrics
-- Incident Coverage, Response Time, Tool Failure Handling, Capability Match, Latency, Decision Quality
+### **Workshop Scenarios**
+- **Heat Wave Crisis**: Power grid overload, cooling center management
+- **Cyber Attack**: Service degradation, resource reallocation
+- **Major Earthquake**: Emergency response, infrastructure damage
+- **Festival Emergency**: Crowd control, traffic management
+- **Multi-Domain Crisis**: Complex coordination across all services
 
 ---
 
 ## 📁 **Repository Structure**
 
 ```
-/
-├── morning_session.py              # Morning workshop (building agents)
-├── afternoon_session.py            # Afternoon workshop (optimization)
-├── workshop/                       # Core infrastructure
-│   ├── command.py                  # Command execution system
-│   ├── agent_system.py             # Agent orchestration
-│   ├── state_management.py         # Service state handling
-│   ├── command_evaluator.py        # Performance evaluation
-│   ├── agent_converter.py          # Agent result processing
-│   ├── afternoon_session_utils.py  # Optimization utilities
-│   ├── scenarios.py                # Crisis scenarios
-│   ├── state_models.py             # Data models
-│   ├── service_management.py       # Service lifecycle
-│   ├── config.py                   # Configuration
-│   ├── day_seed_generator.py       # Scenario generation
-│   └── services/                   # Service implementations
-├── results/                        # Workshop analytics
-└── .env.example                    # Environment template
+├── morning_session.ipynb           # Multi-agent system development
+├── afternoon_session.ipynb         # Optimization and evaluation  
+├── workshop/                       # Core framework
+├── pyproject.toml                 # Python dependencies (uv compatible)
 ```
 
 ---
 
-## 🎓 **Learning Objectives**
+## 🎓 **Learning Outcomes**
 
-### Technical Skills
-- Design modular agentic systems using CrewAI
-- Build specialized tools with structured outputs
-- Implement comprehensive evaluation frameworks
-- Optimize performance through various techniques
-- Integrate human feedback for continuous improvement
-- Utilize MCP for dynamic tool discovery
+### **Technical Skills**
+- Design and implement multi-agent systems using modern frameworks
+- Create reliable agent communication with structured outputs
+- Build comprehensive evaluation frameworks beyond simple metrics
+- Optimize agent performance through parallel processing and caching
+- Integrate human feedback for continuous system improvement
+- Deploy production-ready agent systems with proper monitoring
 
-### Conceptual Understanding
-- Agent vs Rule-Based Systems trade-offs
-- Multi-agent coordination patterns
-- Production deployment considerations
-- Evaluation methodologies beyond success metrics
-- Human-AI interaction and feedback loops
+### **Conceptual Understanding**
+- When to use agents vs rules vs LLM chains
+- Multi-agent coordination patterns and trade-offs
+- Evaluation strategies for autonomous decision-making systems
+- Human-AI collaboration and feedback loop design
+- Production deployment considerations for agentic systems
 
 ---
 
 ## 🏆 **Workshop Format**
 
-- **Morning (3 hours)**: Foundation building and agent development
-- **☕ Break (1 hour)**: Lunch and networking
-- **Afternoon (3 hours)**: Optimization, evaluation, and competition
-- **Interactive**: Jupyter notebook format with hands-on exercises
-- **Competitive**: Final leaderboard across 6 evaluation dimensions
+**Interactive Jupyter Notebooks** with:
+- 📝 Educational content with step-by-step instructions
+- 💻 Modular code cells you can modify and experiment with
+- 🛠️ Hands-on exercises building understanding through practice
+- 📊 Live evaluation and performance comparison
+- 🤝 Group discussions and collaborative learning
+- 🏁 Competitive final challenge with leaderboard
 
+**Schedule:**
+- **Morning (3h)**: Foundation building → Agent development → System integration
+- **Break (1h)**: Lunch and networking  
+- **Afternoon (3h)**: Evaluation → Optimization → Competition
+
+---
+
+## 🔧 **Troubleshooting**
+
+### **Common Issues**
+```bash
+# Environment issues  
+uv sync --reinstall
+
+# Jupyter kernel problems
+python -m ipykernel install --user --name=.venv
+```
+
+### **Requirements**
+- **API Limits**: OpenAI API with sufficient quota for ~100 LLM calls
+- **Network**: Stable connection for real-time service interaction
+
+---
+
+## 📈 **Expected Outcomes**
+
+By workshop end, you'll have:
+- ✅ Working multi-agent system handling complex coordination
+- ✅ Comprehensive evaluation framework with quantitative metrics  
+- ✅ Optimized system with sub-2-second response times
+- ✅ Production-ready deployment patterns and monitoring
+- ✅ Competition score and performance comparison data
+
+**Ready to build the future of autonomous AI systems? Let's get started! 🚀**
