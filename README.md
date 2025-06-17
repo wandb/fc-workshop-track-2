@@ -45,6 +45,7 @@ cp .env.example .env
 ### **3. Start Workshop**
 ```bash
 # Option 1: Full workshop experience (recommended)
+python -m ipykernel install --user --name=.venv --display-name "Python (.venv)"
 jupyter lab
 
 # Option 2: Individual sessions
