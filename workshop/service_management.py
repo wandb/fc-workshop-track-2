@@ -45,7 +45,7 @@ def check_environment():
     except ImportError as e:
         console.print(f"[red]❌ Missing package: {e}[/red]")
         console.print(
-            "Run: pip install crewai crewai-tools openai "
+            "Run: uv add crewai crewai-tools openai "
             "python-dotenv rich pydantic")
         return False
     
