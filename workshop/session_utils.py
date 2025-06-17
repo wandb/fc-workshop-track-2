@@ -4,7 +4,7 @@ Afternoon Session Utilities - Helper functions copied from morning session
 """
 
 import requests
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Type
 from rich.console import Console
 from rich.panel import Panel
 from crewai import Agent, Task, Crew, Process
@@ -22,7 +22,51 @@ import weave
 console = Console()
 
 
-# Structured output models (copied from morning session)
+# Configuration classes for agents (from morning_session.py)
+class GridAgentConfig(BaseModel):
+    """Configuration for creating an agent with its role, goal, and backstory."""
+    role: str = Field(..., description="The role/title of the agent")
+    goal: str = Field(..., description="The primary objective of the agent")
+    backstory: str = Field(..., description="The agent's background and context")
+
+
+class EmergencyAgentConfig(BaseModel):
+    """Configuration for creating an emergency agent with its role, goal, and backstory."""
+    role: str = Field(..., description="The role/title of the agent")
+    goal: str = Field(..., description="The primary objective of the agent")
+    backstory: str = Field(..., description="The agent's background and context")
+
+
+class TrafficAgentConfig(BaseModel):
+    """Configuration for creating a traffic agent with its role, goal, and backstory."""
+    role: str = Field(..., description="The role/title of the agent")
+    goal: str = Field(..., description="The primary objective of the agent")
+    backstory: str = Field(..., description="The agent's background and context")
+
+
+# Task configuration classes
+class GridTaskConfig(BaseModel):
+    """Configuration for creating a task with its description and expected output."""
+    description: str = Field(..., description="The task description with placeholders for dynamic content")
+    expected_output: str = Field(..., description="Description of the expected output from the task")
+    output_pydantic: Type = Field(..., description="The Pydantic model class for the output")
+
+
+class EmergencyTaskConfig(BaseModel):
+    """Configuration for creating an emergency task with its description, expected output, and output schema."""
+    description: str = Field(..., description="The task description")
+    expected_output: str = Field(..., description="The expected output")
+    output_pydantic: Type[BaseModel] = Field(..., description="The output schema")
+
+
+class TrafficTaskConfig(BaseModel):
+    """Configuration for creating a traffic task with its description, expected output, and output schema."""
+    description: str = Field(..., description="The task description")
+    expected_output: str = Field(..., description="The expected output")
+    output_pydantic: Type[BaseModel] = Field(..., description="The output schema")
+
+
+# Structured output models (updated from morning session)
 class ZoneAdjustment(BaseModel):
     """Zone capacity adjustment action."""
     zone_id: str = Field(description="ID of the zone to adjust")
@@ -38,7 +82,7 @@ class InfrastructurePriority(BaseModel):
 
 
 class GridManagementPlan(BaseModel):
-    """Structured output for grid management actions."""
+    """Structured output for grid management actions during heat wave."""
     zone_adjustments: List[ZoneAdjustment] = Field(
         description="Zone capacity adjustments to prevent overloads"
     )
@@ -49,7 +93,7 @@ class GridManagementPlan(BaseModel):
         description="Expected grid stability after implementing changes"
     )
     coordination_notes: str = Field(
-        description="Notes for other agents about grid impacts"
+        description="Notes for other agents about grid impacts and dependencies"
     )
 
 
@@ -68,7 +112,7 @@ class IncidentUpdate(BaseModel):
 
 
 class EmergencyResponsePlan(BaseModel):
-    """Structured output for emergency response actions."""
+    """Structured output for emergency response actions during heat wave."""
     drone_assignments: List[DroneAssignment] = Field(
         description="Drone to incident assignments prioritized by urgency"
     )
@@ -79,7 +123,7 @@ class EmergencyResponsePlan(BaseModel):
         description="Summary of how limited resources are being allocated"
     )
     coordination_notes: str = Field(
-        description="Notes for other agents about emergency operations"
+        description="Notes for other agents about emergency operations and priorities"
     )
 
 
@@ -98,7 +142,7 @@ class RouteBlocking(BaseModel):
 
 
 class TrafficManagementPlan(BaseModel):
-    """Structured output for traffic management actions."""
+    """Structured output for traffic management actions during heat wave."""
     traffic_redirections: List[TrafficRedirection] = Field(
         description="Traffic redirection actions to reduce congestion"
     )
@@ -106,34 +150,104 @@ class TrafficManagementPlan(BaseModel):
         description="Route blocking actions for emergency access"
     )
     emergency_corridors: str = Field(
-        description="Description of maintained emergency vehicle access"
+        description="Description of maintained emergency vehicle access routes"
     )
     coordination_notes: str = Field(
-        description="Notes for other agents about traffic impacts"
+        description="Notes for other agents about traffic impacts and emergency access"
     )
 
 
-# Tool creation functions (copied from morning session)
-def create_grid_zone_adjustment_tool():
-    """Create GridZoneAdjustmentTool with dynamic description."""
+# Tool descriptions (from morning_session.py)
+grid_zone_adjustment_tool_description = """
+Adjust the power grid zone capacity with detailed specifications.
+
+Parameters:
+- zone_id: Target zone identifier (available: {zones})
+- capacity: Desired capacity level (0.0-1.0)
+- reason: Justification for the adjustment
+
+Returns execution status with detailed feedback.
+"""
+
+infrastructure_priority_tool_description = """
+Set priority level for critical infrastructure.
+
+Parameters:
+- infrastructure_id: ID of infrastructure (available: {infrastructure})
+- level: Priority level ('normal', 'high', 'critical')
+- reason: Reason for priority change
+
+Returns success/failure status.
+"""
+
+drone_assignment_tool_description = """
+Assign an available drone to an emergency incident with detailed specifications.
+
+Parameters:
+- drone_id: Target drone identifier (available: {drones})
+- incident_id: Target incident identifier (available: {incidents})
+- reason: Justification for the assignment
+
+Returns execution status with detailed feedback.
+"""
+
+incident_update_tool_description = """
+Update the status of an emergency incident with tracking capabilities.
+
+Parameters:
+- incident_id: ID of incident to update (available: {incidents})
+- status: New status ('active', 'assigned', 'in_progress', 'resolved')
+- reason: Reason for status change
+
+Returns success/failure status.
+"""
+
+traffic_redirection_tool_description = """
+Redirect traffic in congested sectors to alleviate congestion and improve flow.
+
+Parameters:
+- sector_id: ID of the traffic sector to redirect (available: {sectors})
+- target_reduction: Target congestion reduction percentage (0.0-1.0)
+- reason: Justification for the redirection
+
+Returns execution status with detailed feedback.
+"""
+
+route_blocking_tool_description = """
+Block a route for emergency access to ensure safe passage for emergency vehicles.
+
+Parameters:
+- sector_id: ID of the sector to block (available: {sectors})
+- duration_minutes: Duration to block the route in minutes
+- reason: Reason for blocking the route
+
+Returns success/failure status.
+"""
+
+# Tool creation functions (updated from morning_session.py)
+@weave.op
+def create_grid_zone_adjustment_tool(tool_description: str):
+    """
+    Create GridZoneAdjustmentTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
     actual_ids = get_actual_service_ids()
     available_zones = actual_ids.get('grid_zones', ['Z001', 'Z002', 'Z003'])
+
+    description = tool_description.format(zones=', '.join(available_zones))
+    weave.publish(weave.StringPrompt(description), name="grid_tool_prompt")
     
-    class DynamicGridZoneAdjustmentTool(BaseTool):
+    class GridZoneAdjustmentTool(BaseTool):
         name: str = "adjust_grid_zone"
-        description: str = (
-            f"Adjust the capacity of a specific power grid zone.\n\n"
-            f"Parameters:\n"
-            f"- zone_id: ID of the zone (available zones: "
-            f"{', '.join(available_zones)})\n"
-            f"- capacity: New capacity level between 0.0 and 1.0\n"
-            f"- reason: Reason for the adjustment\n\n"
-            f"Returns success/failure status."
-        )
+        description: str = ""
         
-        def __init__(self):
+        def __init__(self, description):
             super().__init__()
             self._execution_results = []
+            self.description = description
         
         def _run(self, zone_id: str, capacity: float, reason: str) -> str:
             cmd = Command(
@@ -145,88 +259,98 @@ def create_grid_zone_adjustment_tool():
             executor = CommandExecutor()
             result = executor.execute(cmd)
             
+            # Track execution result
             self._execution_results.append(result.success)
             
             status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🔧 Grid: {zone_id} → {capacity:.1%} "
-                         f"({reason}) - {status}")
+            console.print(f"🔧 Grid: {zone_id} → {capacity:.1%} ({reason}) - {status}")
             
             return f"Grid zone {zone_id} adjustment: {status}"
 
-    return DynamicGridZoneAdjustmentTool()
+    return GridZoneAdjustmentTool(description=description)
 
 
-def create_infrastructure_priority_tool():
-    """Create InfrastructurePriorityTool with dynamic description."""
+@weave.op
+def create_infrastructure_priority_tool(tool_description: str):
+    """
+    Create InfrastructurePriorityTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
     try:
-        response = requests.get(f"{SERVICE_URLS['grid']}/service/info", 
-                               timeout=5)
+        response = requests.get(f"{SERVICE_URLS['grid']}/service/info", timeout=5)
         if response.status_code == 200:
-            available_infrastructure = [
-                "hospital", "police", "emergency_services", 
-                "water_treatment", "data_center", "emergency_shelter"
-            ]
+            available_infrastructure = ["hospital", "police", "emergency_services", 
+                                      "water_treatment", "data_center", 
+                                      "emergency_shelter"]
         else:
-            available_infrastructure = [
-                "hospital", "police", "emergency_services"
-            ]
+            available_infrastructure = ["hospital", "police", "emergency_services"]
     except Exception:
         available_infrastructure = ["hospital", "police", "emergency_services"]
     
-    class DynamicInfrastructurePriorityTool(BaseTool):
+    description = tool_description.format(infrastructure=', '.join(available_infrastructure))
+    weave.publish(weave.StringPrompt(description), name="infrastructure_tool_prompt")
+    
+    class InfrastructurePriorityTool(BaseTool):
         name: str = "set_infrastructure_priority"
-        description: str = (
-            f"Set priority level for critical infrastructure.\n\n"
-            f"Parameters:\n"
-            f"- infrastructure_id: ID of infrastructure (available: "
-            f"{', '.join(available_infrastructure)})\n"
-            f"- level: Priority level ('normal', 'high', 'critical')\n"
-            f"- reason: Reason for priority change\n\n"
-            f"Returns success/failure status."
-        )
+        description: str = ""
         
-        def __init__(self):
+        def __init__(self, description):
             super().__init__()
             self._execution_results = []
+            self.description = description
         
         def _run(self, infrastructure_id: str, level: str, reason: str) -> str:
             cmd = Command(
                 service=ServiceType.GRID,
                 action="set_priority",
-                parameters={"infrastructure_id": infrastructure_id, 
-                           "level": level}
+                parameters={"infrastructure_id": infrastructure_id, "level": level}
             )
             
             executor = CommandExecutor()
             result = executor.execute(cmd)
             
+            # Track execution result
             self._execution_results.append(result.success)
             
             status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"⚡ Priority: {infrastructure_id} → {level} "
-                         f"({reason}) - {status}")
+            console.print(f"⚡ Priority: {infrastructure_id} → {level} ({reason}) - {status}")
             
             return f"Infrastructure {infrastructure_id} priority: {status}"
 
-    return DynamicInfrastructurePriorityTool()
+    return InfrastructurePriorityTool(description=description)
 
 
-def create_drone_assignment_tool():
-    """Create DroneAssignmentTool with dynamic description."""
-    actual_ids = get_actual_service_ids()
-    available_drones = actual_ids.get('drones', 
-                                     ['D001', 'D002', 'D003', 'D004'])
-    available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 
-                                         'E-1004'])
+@weave.op
+def create_drone_assignment_tool(tool_description: str):
+    """
+    Create DroneAssignmentTool with the provided description.
     
-    class DynamicDroneAssignmentTool(BaseTool):
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
+    available_incidents = actual_ids.get('incidents', 
+                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+
+    description = tool_description.format(
+        drones=', '.join(available_drones),
+        incidents=', '.join(available_incidents)
+    )
+    weave.publish(weave.StringPrompt(description), name="drone_assignment_tool_prompt")
+    
+    class DroneAssignmentTool(BaseTool):
         name: str = "assign_emergency_drone"
-        description: str = (
-            f"Assign an available drone to an emergency incident.\n"
-            f"Available drones: {', '.join(available_drones)}\n"
-            f"Available incidents: {', '.join(available_incidents)}"
-        )
+        description: str = ""
+        
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
         
         def _run(self, drone_id: str, incident_id: str, reason: str) -> str:
             cmd = Command(
@@ -238,29 +362,43 @@ def create_drone_assignment_tool():
             executor = CommandExecutor()
             result = executor.execute(cmd)
             
+            # Track execution result
+            self._execution_results.append(result.success)
+            
             status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚁 Drone: {drone_id} → {incident_id} "
-                         f"({reason}) - {status}")
+            console.print(f"🚁 Drone: {drone_id} → {incident_id} ({reason}) - {status}")
             
             return f"Drone {drone_id} assignment: {status}"
 
-    return DynamicDroneAssignmentTool()
+    return DroneAssignmentTool(description=description)
 
 
-def create_incident_update_tool():
-    """Create IncidentUpdateTool with dynamic description."""
+@weave.op
+def create_incident_update_tool(tool_description: str):
+    """
+    Create IncidentUpdateTool with the provided description.
+    
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
     actual_ids = get_actual_service_ids()
     available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 
-                                         'E-1004'])
+                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+
+    description = tool_description.format(
+        incidents=', '.join(available_incidents)
+    )
+    weave.publish(weave.StringPrompt(description), name="incident_update_tool_prompt")
     
-    class DynamicIncidentUpdateTool(BaseTool):
+    class IncidentUpdateTool(BaseTool):
         name: str = "update_incident_status"
-        description: str = (
-            f"Update the status of an emergency incident.\n"
-            f"Available incidents: {', '.join(available_incidents)}\n"
-            f"Valid statuses: 'active', 'assigned', 'in_progress', 'resolved'"
-        )
+        description: str = ""
+        
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
         
         def _run(self, incident_id: str, status: str, reason: str) -> str:
             cmd = Command(
@@ -272,65 +410,91 @@ def create_incident_update_tool():
             executor = CommandExecutor()
             result = executor.execute(cmd)
             
+            # Track execution result
+            self._execution_results.append(result.success)
+            
             status_result = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚨 Incident: {incident_id} → {status} "
-                         f"({reason}) - {status_result}")
+            console.print(f"🚨 Incident: {incident_id} → {status} ({reason}) - {status_result}")
             
             return f"Incident {incident_id} update: {status_result}"
 
-    return DynamicIncidentUpdateTool()
+    return IncidentUpdateTool(description=description)
 
 
-def create_traffic_redirection_tool():
-    """Create TrafficRedirectionTool with dynamic description."""
-    actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', 
-                                      ['S001', 'S002', 'S003'])
+@weave.op
+def create_traffic_redirection_tool(tool_description: str):
+    """
+    Create TrafficRedirectionTool with the provided description.
     
-    class DynamicTrafficRedirectionTool(BaseTool):
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
+
+    description = tool_description.format(
+        sectors=', '.join(available_sectors)
+    )
+    weave.publish(weave.StringPrompt(description), name="traffic_redirection_tool_prompt")
+    
+    class TrafficRedirectionTool(BaseTool):
         name: str = "redirect_traffic"
-        description: str = (
-            f"Redirect traffic in congested sectors.\n"
-            f"Available sectors: {', '.join(available_sectors)}"
-        )
+        description: str = ""
         
-        def _run(self, sector_id: str, target_reduction: float, 
-                reason: str) -> str:
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
+        
+        def _run(self, sector_id: str, target_reduction: float, reason: str) -> str:
             cmd = Command(
                 service=ServiceType.TRAFFIC,
                 action="redirect",
-                parameters={"sector_id": sector_id, 
-                           "target_reduction": target_reduction}
+                parameters={"sector_id": sector_id, "target_reduction": target_reduction}
             )
             
             executor = CommandExecutor()
             result = executor.execute(cmd)
             
+            # Track execution result
+            self._execution_results.append(result.success)
+            
             status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚦 Traffic: {sector_id} → "
-                         f"{target_reduction:.1%} reduction "
-                         f"({reason}) - {status}")
+            console.print(f"🚦 Traffic: {sector_id} → {target_reduction:.1%} reduction ({reason}) - {status}")
             
             return f"Traffic redirection in sector {sector_id}: {status}"
 
-    return DynamicTrafficRedirectionTool()
+    return TrafficRedirectionTool(description=description)
 
 
-def create_route_blocking_tool():
-    """Create RouteBlockingTool with dynamic description."""
-    actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', 
-                                      ['S001', 'S002', 'S003'])
+@weave.op
+def create_route_blocking_tool(tool_description: str):
+    """
+    Create RouteBlockingTool with the provided description.
     
-    class DynamicRouteBlockingTool(BaseTool):
+    Args:
+        tool_description: Description for the tool that explains its purpose,
+                         parameters, and return values.
+    """
+    actual_ids = get_actual_service_ids()
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
+
+    description = tool_description.format(
+        sectors=', '.join(available_sectors)
+    )
+    weave.publish(weave.StringPrompt(description), name="route_blocking_tool_prompt")
+    
+    class RouteBlockingTool(BaseTool):
         name: str = "block_route"
-        description: str = (
-            f"Block a route for emergency access.\n"
-            f"Available sectors: {', '.join(available_sectors)}"
-        )
+        description: str = ""
         
-        def _run(self, sector_id: str, duration_minutes: int, 
-                reason: str) -> str:
+        def __init__(self, description):
+            super().__init__()
+            self._execution_results = []
+            self.description = description
+        
+        def _run(self, sector_id: str, duration_minutes: int, reason: str) -> str:
             cmd = Command(
                 service=ServiceType.TRAFFIC,
                 action="block_route",
@@ -344,56 +508,58 @@ def create_route_blocking_tool():
             executor = CommandExecutor()
             result = executor.execute(cmd)
             
+            # Track execution result
+            self._execution_results.append(result.success)
+            
             status = "SUCCESS" if result.success else "FAILED"
-            console.print(f"🚧 Route: {sector_id} blocked for "
-                         f"{duration_minutes}min ({reason}) - {status}")
+            console.print(f"🚧 Route: {sector_id} blocked for {duration_minutes}min ({reason}) - {status}")
             
             return f"Route blocking in sector {sector_id}: {status}"
     
-    return DynamicRouteBlockingTool()
+    return RouteBlockingTool(description=description)
 
 
-# Agent creation functions (copied from morning session)
-def create_grid_agent():
-    """Create the Grid Management Specialist Agent."""
+# Agent creation functions (updated from morning_session.py)
+@weave.op
+def create_grid_agent(config: GridAgentConfig):
+    """
+    Create the Grid Management Specialist Agent with dynamic context.
+    
+    Args:
+        config: GridAgentConfig containing the base agent configuration
+    """
     actual_ids = get_actual_service_ids()
     available_zones = actual_ids.get('grid_zones', ['Z001', 'Z002', 'Z003'])
     
     try:
-        response = requests.get(f"{SERVICE_URLS['grid']}/service/info", 
-                               timeout=5)
+        response = requests.get(f"{SERVICE_URLS['grid']}/service/info", timeout=5)
         if response.status_code == 200:
-            available_infrastructure = [
-                "hospital", "police", "emergency_services", 
-                "water_treatment", "data_center", "emergency_shelter"
-            ]
+            available_infrastructure = ["hospital", "police", "emergency_services", 
+                                      "water_treatment", "data_center", 
+                                      "emergency_shelter"]
         else:
-            available_infrastructure = [
-                "hospital", "police", "emergency_services"
-            ]
+            available_infrastructure = ["hospital", "police", "emergency_services"]
     except Exception:
         available_infrastructure = ["hospital", "police", "emergency_services"]
     
+    # Format the backstory with dynamic content
+    formatted_backstory = config.backstory.format(
+        zones=', '.join(available_zones),
+        infrastructure=', '.join(available_infrastructure),
+        zone_count=len(available_zones)
+    )
+    
+    # Format the goal with dynamic content
+    formatted_goal = config.goal.format(
+        zone_count=len(available_zones)
+    )
+    
     grid_specialist = Agent(
-        role="Power Grid Stability Specialist",
-        goal=f"Prevent grid failures through capacity management and "
-             f"infrastructure prioritization across {len(available_zones)} "
-             f"zones",
-        backstory=(
-            f"Senior grid engineer specializing in load balancing and "
-            f"infrastructure prioritization.\n\n"
-            f"Available resources:\n"
-            f"• Grid zones: {', '.join(available_zones)}\n"
-            f"• Critical infrastructure: "
-            f"{', '.join(available_infrastructure)}\n\n"
-            f"Decision criteria:\n"
-            f"• Reduce capacity for any zone >90% load to 0.8 or lower\n"
-            f"• Set all critical infrastructure to 'critical' priority\n"
-            f"• Take 6+ actions total (zone adjustments + priorities)\n"
-            f"• Use actual resource IDs only"
-        ),
-        tools=[create_grid_zone_adjustment_tool(), 
-               create_infrastructure_priority_tool()],
+        role=config.role,
+        goal=formatted_goal,
+        backstory=formatted_backstory,
+        tools=[create_grid_zone_adjustment_tool(grid_zone_adjustment_tool_description), 
+               create_infrastructure_priority_tool(infrastructure_priority_tool_description)],
         verbose=True,
         allow_delegation=False
     )
@@ -401,68 +567,79 @@ def create_grid_agent():
     return grid_specialist
 
 
-def create_emergency_agent():
-    """Create emergency management agent."""
+@weave.op
+def create_emergency_agent(config: EmergencyAgentConfig):
+    """
+    Create the Emergency Response Coordinator Agent with dynamic context.
+    
+    Args:
+        config: EmergencyAgentConfig containing the base agent configuration
+    """
     actual_ids = get_actual_service_ids()
-    available_drones = actual_ids.get('drones', 
-                                     ['D001', 'D002', 'D003', 'D004'])
+    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
     available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 
-                                         'E-1004'])
+                                        ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
     
-    emergency_agent = Agent(
-        role="Emergency Response Coordinator",
-        goal=f"Optimize drone deployment and incident management across "
-             f"{len(available_drones)} drones and "
-             f"{len(available_incidents)} incidents",
-        backstory=(
-            f"Emergency coordinator specializing in resource allocation "
-            f"and incident response.\n\n"
-            f"Available resources:\n"
-            f"• Drones: {', '.join(available_drones)}\n"
-            f"• Incidents: {', '.join(available_incidents)}\n\n"
-            f"Decision criteria:\n"
-            f"• Assign all drones to incidents based on urgency\n"
-            f"• Update incident statuses to track progress\n"
-            f"• Take 6+ actions total (assignments + status updates)\n"
-            f"• Use actual resource IDs only"
-        ),
-        tools=[create_drone_assignment_tool(), create_incident_update_tool()],
+    # Format the backstory with dynamic content
+    formatted_backstory = config.backstory.format(
+        drones=', '.join(available_drones),
+        incidents=', '.join(available_incidents),
+        drone_count=len(available_drones),
+        incident_count=len(available_incidents)
+    )
+    
+    # Format the goal with dynamic content
+    formatted_goal = config.goal.format(
+        drone_count=len(available_drones),
+        incident_count=len(available_incidents)
+    )
+    
+    emergency_specialist = Agent(
+        role=config.role,
+        goal=formatted_goal,
+        backstory=formatted_backstory,
+        tools=[create_drone_assignment_tool(drone_assignment_tool_description), 
+               create_incident_update_tool(incident_update_tool_description)],
         verbose=True,
         allow_delegation=False
     )
     
-    return emergency_agent
+    return emergency_specialist
 
 
-def create_traffic_agent():
-    """Create traffic management agent."""
+@weave.op
+def create_traffic_agent(config: TrafficAgentConfig):
+    """
+    Create the Traffic Management Specialist Agent with dynamic context.
+    
+    Args:
+        config: TrafficAgentConfig containing the base agent configuration
+    """
     actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', 
-                                      ['S001', 'S002', 'S003'])
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
     
-    traffic_agent = Agent(
-        role="Traffic Management Specialist", 
-        goal=f"Optimize traffic flow and emergency access across "
-             f"{len(available_sectors)} sectors",
-        backstory=(
-            f"Traffic engineer specializing in congestion management "
-            f"and emergency routing.\n\n"
-            f"Available resources:\n"
-            f"• Traffic sectors: {', '.join(available_sectors)}\n\n"
-            f"Decision criteria:\n"
-            f"• Redirect traffic in sectors >70% congestion\n"
-            f"• Block routes for emergency corridor creation\n"
-            f"• Take 4+ actions total (redirections + blockings)\n"
-            f"• Use actual resource IDs only"
-        ),
-        tools=[create_traffic_redirection_tool(), 
-               create_route_blocking_tool()],
+    # Format the backstory with dynamic content
+    formatted_backstory = config.backstory.format(
+        sectors=', '.join(available_sectors),
+        sector_count=len(available_sectors)
+    )
+    
+    # Format the goal with dynamic content
+    formatted_goal = config.goal.format(
+        sector_count=len(available_sectors)
+    )
+    
+    traffic_specialist = Agent(
+        role=config.role,
+        goal=formatted_goal,
+        backstory=formatted_backstory,
+        tools=[create_traffic_redirection_tool(traffic_redirection_tool_description), 
+               create_route_blocking_tool(route_blocking_tool_description)],
         verbose=True,
         allow_delegation=False
     )
     
-    return traffic_agent
+    return traffic_specialist
 
 
 def create_crisis_manager_agent():
@@ -493,118 +670,206 @@ def create_crisis_manager_agent():
     return crisis_manager
 
 
-# Task creation functions
-def create_grid_task(grid_agent):
-    """Create a task specifically for the Grid agent."""
+# Task creation functions (updated from morning_session.py)
+@weave.op
+def create_grid_task(grid_agent, config: GridTaskConfig):
+    """
+    Create a task specifically for the Grid agent with dynamic context.
+    
+    Args:
+        grid_agent: The agent that will execute the task
+        config: TaskConfig containing the base task configuration
+    """
     actual_ids = get_actual_service_ids()
     available_zones = actual_ids.get('grid_zones', ['Z001', 'Z002', 'Z003'])
     
     try:
-        response = requests.get(f"{SERVICE_URLS['grid']}/service/info", 
-                               timeout=5)
+        response = requests.get(f"{SERVICE_URLS['grid']}/service/info", timeout=5)
         if response.status_code == 200:
-            available_infrastructure = [
-                "hospital", "police", "emergency_services", 
-                "water_treatment", "data_center", "emergency_shelter"
-            ]
+            available_infrastructure = ["hospital", "police", "emergency_services", 
+                                      "water_treatment", "data_center", 
+                                      "emergency_shelter"]
         else:
-            available_infrastructure = [
-                "hospital", "police", "emergency_services"
-            ]
+            available_infrastructure = ["hospital", "police", "emergency_services"]
     except Exception:
         available_infrastructure = ["hospital", "police", "emergency_services"]
     
+    # Format the description with dynamic content
+    formatted_description = config.description.format(
+        zones=', '.join(available_zones),
+        infrastructure=', '.join(available_infrastructure)
+    )
+    
     grid_task = Task(
-        description=(
-            f"Heat wave crisis: Grid zones approaching overload thresholds."
-            f"\n\nRequired actions:\n"
-            f"1. Check all zones: {', '.join(available_zones)}\n"
-            f"2. Reduce capacity to 0.8 for any zone >90% load\n"
-            f"3. Set all critical infrastructure to 'critical' priority: "
-            f"{', '.join(available_infrastructure)}\n\n"
-            f"Success criteria: Execute 6+ total actions minimum\n"
-            f"Use only the resource IDs listed above"
-        ),
+        description=formatted_description,
         agent=grid_agent,
-        expected_output="Grid management plan with capacity adjustments "
-                       "and infrastructure priorities",
-        output_pydantic=GridManagementPlan
+        expected_output=config.expected_output,
+        output_pydantic=config.output_pydantic
     )
     
     return grid_task
 
 
-def create_emergency_task(emergency_agent):
-    """Create a task specifically for the Emergency agent."""
+@weave.op
+def create_emergency_task(emergency_agent: Agent, config: EmergencyTaskConfig):
+    """
+    Create a task specifically for the Emergency agent with dynamic context.
+    
+    Args:
+        config: EmergencyTaskConfig containing the base task configuration
+        emergency_agent: The Emergency Response Coordinator Agent
+    """
     actual_ids = get_actual_service_ids()
-    available_drones = actual_ids.get('drones', 
-                                     ['D001', 'D002', 'D003', 'D004'])
-    available_incidents = actual_ids.get('incidents', 
-                                        ['E-1001', 'E-1002', 'E-1003', 
-                                         'E-1004'])
+    available_drones = actual_ids.get('drones', ['D001', 'D002', 'D003', 'D004'])
+    available_incidents = actual_ids.get('incidents', ['E-1001', 'E-1002', 'E-1003', 'E-1004'])
+    
+    # Format the description with dynamic content
+    formatted_description = config.description.format(
+        drones=', '.join(available_drones),
+        incidents=', '.join(available_incidents)
+    )
     
     emergency_task = Task(
-        description=(
-            f"Heat wave emergency with multiple casualties requiring "
-            f"drone response.\n\n"
-            f"Available resources:\n"
-            f"• Drones: {', '.join(available_drones)}\n"
-            f"• Incidents: {', '.join(available_incidents)}\n\n"
-            f"Required actions:\n"
-            f"1. Assign all drones to incidents by urgency priority\n"
-            f"2. Update incident statuses to 'assigned' or 'in_progress'\n\n"
-            f"Success criteria: Execute 6+ total actions minimum\n"
-            f"Use only the resource IDs listed above"
-        ),
+        description=formatted_description,
         agent=emergency_agent,
-        expected_output="Emergency response plan with drone assignments "
-                       "and incident tracking",
-        output_pydantic=EmergencyResponsePlan
+        expected_output=config.expected_output,
+        output_pydantic=config.output_pydantic
     )
     return emergency_task
 
 
-def create_traffic_task(traffic_agent):
-    """Create a task specifically for the Traffic agent."""
+@weave.op
+def create_traffic_task(traffic_agent: Agent, config: TrafficTaskConfig):
+    """
+    Create a task specifically for the Traffic agent with dynamic context.
+    
+    Args:
+        config: TrafficTaskConfig containing the base task configuration
+        traffic_agent: The Traffic Management Specialist Agent
+    """
     actual_ids = get_actual_service_ids()
-    available_sectors = actual_ids.get('traffic_sectors', 
-                                      ['S001', 'S002', 'S003'])
+    available_sectors = actual_ids.get('traffic_sectors', ['S001', 'S002', 'S003'])
+    
+    # Format the description with dynamic content
+    formatted_description = config.description.format(
+        sectors=', '.join(available_sectors)
+    )
     
     traffic_task = Task(
-        description=(
-            f"Heat wave crisis: Traffic congestion blocking emergency "
-            f"vehicle access.\n\n"
-            f"Available sectors: {', '.join(available_sectors)}\n\n"
-            f"Required actions:\n"
-            f"1. Redirect traffic in sectors >70% congestion "
-            f"(reduce by 40-50%)\n"
-            f"2. Block 1-2 routes for dedicated emergency corridors "
-            f"(30-60 min)\n\n"
-            f"Success criteria: Execute 4+ total actions minimum\n"
-            f"Use only the sector IDs listed above"
-        ),
+        description=formatted_description,
         agent=traffic_agent,
-        expected_output="Traffic management plan with redirections "
-                       "and route blocks",
-        output_pydantic=TrafficManagementPlan
+        expected_output=config.expected_output,
+        output_pydantic=config.output_pydantic
     )
     return traffic_task
 
 
-# Baseline agent creation functions
+# Pre-defined configurations (from morning_session.py)
+grid_agent_config = GridAgentConfig(
+    role="Power Grid Stability Specialist",
+    goal="Prevent grid failures through capacity management and infrastructure prioritization across {zone_count} zones",
+    backstory=(
+        "Senior grid engineer specializing in load balancing and infrastructure prioritization.\n\n"
+        "Available resources:\n"
+        "• Grid zones: {zones}\n"
+        "• Critical infrastructure: {infrastructure}\n\n"
+        "Decision criteria:\n"
+        "• Reduce capacity for any zone >90% load to 0.8 or lower\n"
+        "• Set all critical infrastructure to 'critical' priority\n"
+        "• Take 6+ actions total (zone adjustments + infrastructure priorities)\n"
+        "• Use actual resource IDs only"
+    )
+)
+
+emergency_agent_config = EmergencyAgentConfig(
+    role="Emergency Response Coordinator",
+    goal="Optimize drone deployment and incident management across {drone_count} drones and {incident_count} incidents",
+    backstory=(
+        "Emergency coordinator specializing in resource allocation and incident response.\n\n"
+        "Available resources:\n"
+        "• Drones: {drones}\n"
+        "• Incidents: {incidents}\n\n"
+        "Decision criteria:\n"
+        "• Assign all drones to incidents based on urgency\n"
+        "• Update incident statuses to track progress\n"
+        "• Take 6+ actions total (assignments + status updates)\n"
+        "• Use actual resource IDs only"
+    )
+)
+
+traffic_agent_config = TrafficAgentConfig(
+    role="Traffic Management Specialist",
+    goal="Optimize traffic flow and emergency access across {sector_count} sectors",
+    backstory=(
+        "Traffic engineer specializing in congestion management and emergency routing.\n\n"
+        "Available resources:\n"
+        "• Traffic sectors: {sectors}\n\n"
+        "Decision criteria:\n"
+        "• Redirect traffic in sectors >70% congestion\n"
+        "• Block routes for emergency corridor creation\n"
+        "• Take 4+ actions total (redirections + blockings)\n"
+        "• Use actual resource IDs only"
+    )
+)
+
+grid_task_config = GridTaskConfig(
+    description=(
+        "Heat wave crisis: Grid zones approaching overload thresholds.\n\n"
+        "Required actions:\n"
+        "1. Check all zones: {zones}\n"
+        "2. Reduce capacity to 0.8 for any zone >90% load\n"
+        "3. Set all critical infrastructure to 'critical' priority: {infrastructure}\n\n"
+        "Success criteria: Execute 6+ total actions minimum\n"
+        "Use only the resource IDs listed above"
+    ),
+    expected_output="Grid management plan with capacity adjustments and infrastructure priorities",
+    output_pydantic=GridManagementPlan
+)
+
+emergency_task_config = EmergencyTaskConfig(
+    description=(
+        "Heat wave emergency with multiple casualties requiring drone response.\n\n"
+        "Available resources:\n"
+        "• Drones: {drones}\n"
+        "• Incidents: {incidents}\n\n"
+        "Required actions:\n"
+        "1. Assign all drones to incidents by urgency priority\n"
+        "2. Update incident statuses to 'assigned' or 'in_progress'\n\n"
+        "Success criteria: Execute 6+ total actions minimum\n"
+        "Use only the resource IDs listed above"
+    ),
+    expected_output="Emergency response plan with drone assignments and incident tracking",
+    output_pydantic=EmergencyResponsePlan
+)
+
+traffic_task_config = TrafficTaskConfig(
+    description=(
+        "Heat wave crisis: Traffic congestion blocking emergency vehicle access.\n\n"
+        "Available sectors: {sectors}\n\n"
+        "Required actions:\n"
+        "1. Redirect traffic in sectors >70% congestion (reduce by 40-50%)\n"
+        "2. Block 1-2 routes for dedicated emergency corridors (30-60 min)\n\n"
+        "Success criteria: Execute 4+ total actions minimum\n"
+        "Use only the sector IDs listed above"
+    ),
+    expected_output="Traffic management plan with redirections and route blocks",
+    output_pydantic=TrafficManagementPlan
+)
+
+# Baseline agent creation functions (updated to use configurations)
 def create_baseline_grid_agent():
     """Create baseline grid agent for comparison."""
-    return create_grid_agent()
+    return create_grid_agent(grid_agent_config)
 
 
 def create_baseline_emergency_agent():
     """Create baseline emergency agent for comparison."""
-    return create_emergency_agent()
+    return create_emergency_agent(emergency_agent_config)
 
 
 def create_baseline_traffic_agent():
     """Create baseline traffic agent for comparison."""
-    return create_traffic_agent()
+    return create_traffic_agent(traffic_agent_config)
 
 
 def create_baseline_agent_system():
@@ -616,43 +881,38 @@ def create_baseline_agent_system():
     return Crew(
         agents=[grid_agent, emergency_agent, traffic_agent],
         tasks=[
-            Task(description="Handle grid stability management", 
-                 agent=grid_agent, expected_output="Grid management actions"),
-            Task(description="Handle emergency response coordination", 
-                 agent=emergency_agent, 
-                 expected_output="Emergency response actions"),
-            Task(description="Handle traffic flow optimization", 
-                 agent=traffic_agent, 
-                 expected_output="Traffic management actions")
+            create_grid_task(grid_agent, grid_task_config),
+            create_emergency_task(emergency_agent, emergency_task_config),
+            create_traffic_task(traffic_agent, traffic_task_config)
         ],
         process=Process.sequential,
         verbose=True
     )
 
 
-# Optimized agent creation functions
+# Optimized agent creation functions (updated to use configurations)
 def create_optimized_grid_agent():
     """Create optimized grid agent."""
-    return create_grid_agent()
+    return create_grid_agent(grid_agent_config)
 
 
 def create_optimized_emergency_agent():
     """Create optimized emergency agent."""
-    return create_emergency_agent()
+    return create_emergency_agent(emergency_agent_config)
 
 
 def create_optimized_traffic_agent():
     """Create optimized traffic agent."""
-    return create_traffic_agent()
+    return create_traffic_agent(traffic_agent_config)
 
 
 def create_optimized_agent_tasks(grid_agent, emergency_agent, traffic_agent, 
                                 scenario):
     """Create optimized tasks for agents."""
     return [
-        create_grid_task(grid_agent),
-        create_emergency_task(emergency_agent),
-        create_traffic_task(traffic_agent)
+        create_grid_task(grid_agent, grid_task_config),
+        create_emergency_task(emergency_agent, emergency_task_config),
+        create_traffic_task(traffic_agent, traffic_task_config)
     ]
 
 

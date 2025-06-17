@@ -198,21 +198,17 @@ def save_experiment_results(workshop_results: dict,
                 if grid_data:
                     grid_rules = grid_data.get("rule_success_rate", 0)
                     grid_agents = grid_data.get("agent_success_rate", 0)
-                    console.print(f"      Grid: Rules {grid_rules:.1%}, Agents {grid_agents:.1%}")
+                    # console.print(f"      Grid: Rules {grid_rules:.1%}, Agents {grid_agents:.1%}")
                 if emergency_data:
                     emg_rules = emergency_data.get("rule_success_rate", 0)
                     emg_agents = emergency_data.get("agent_success_rate", 0)
-                    console.print(f"      Emergency: Rules {emg_rules:.1%}, Agents {emg_agents:.1%}")
+                    # console.print(f"      Emergency: Rules {emg_rules:.1%}, Agents {emg_agents:.1%}")
                 if traffic_data:
                     traf_rules = traffic_data.get("rule_success_rate", 0)
                     traf_agents = traffic_data.get("agent_success_rate", 0)
-                    console.print(f"      Traffic: Rules {traf_rules:.1%}, Agents {traf_agents:.1%}")
+                    # console.print(f"      Traffic: Rules {traf_rules:.1%}, Agents {traf_agents:.1%}")
         else:
-            # Show overall summary
-            console.print(
-                f"    LLM: {summary['llm_chain_success']:.1%}, "
-                f"Rules: {summary['rule_based_success']:.1%}, "
-                f"Agents: {summary['agent_system_success']:.1%}")
+            pass
     except Exception as e:
         console.print(f"[red]Failed to save results: {e}[/red]")
         # Try to save to backup file

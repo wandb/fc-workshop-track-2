@@ -58,9 +58,7 @@ def update_config(new_config: Dict[str, Any]) -> None:
     """
     global _config
     _config.update(new_config)
-    
-    # Apply logging configuration changes
-    _configure_logging()
+    configure_logging()  # Reconfigure logging with new settings
 
 # Set verbosity level (can be overridden with environment variable)
 VERBOSITY_LEVEL = os.environ.get("VERBOSITY_LEVEL", "normal").lower()  # Ensure lowercase
@@ -71,31 +69,41 @@ except ValueError:
     verbosity = VerbosityLevel.DEBUG
     print(f"Warning: Invalid verbosity level '{VERBOSITY_LEVEL}'. Using {verbosity} instead.")
 
-# Configure logging
+# Create a specific logger for our application
+logger = logging.getLogger("sentinel_grid")
+
 def configure_logging():
     """Configure logging based on verbosity level."""
-    log_level = logging.INFO
+    # Map verbosity levels to logging levels
+    log_levels = {
+        VerbosityLevel.SILENT: logging.ERROR,
+        VerbosityLevel.MINIMAL: logging.WARNING,
+        VerbosityLevel.NORMAL: logging.INFO,
+        VerbosityLevel.VERBOSE: logging.DEBUG,
+        VerbosityLevel.DEBUG: logging.DEBUG
+    }
     
-    if verbosity == VerbosityLevel.DEBUG:
-        log_level = logging.DEBUG
-    elif verbosity == VerbosityLevel.SILENT:
-        log_level = logging.ERROR
+    level = log_levels.get(verbosity, logging.INFO)
+    
+    # Configure our specific logger
+    logger.setLevel(level)
+    
+    # Only add handlers if none exist
+    if not logger.handlers:
+        # Add file handler if enabled
+        if _config["log_to_file"]:
+            file_handler = logging.FileHandler(_config["log_file"])
+            file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+            logger.addHandler(file_handler)
         
-    # Configure root logger
-    logging.basicConfig(
-        level=log_level,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.StreamHandler()
-        ]
-    )
+        # Add console handler
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        logger.addHandler(console_handler)
     
     # Make third-party loggers less noisy
     logging.getLogger("requests").setLevel(logging.WARNING)
     logging.getLogger("urllib3").setLevel(logging.WARNING)
-
-# Call this at import time
-configure_logging()
 
 def get_verbosity() -> VerbosityLevel:
     """Get the current verbosity level."""
@@ -110,42 +118,7 @@ def set_verbosity(level: VerbosityLevel) -> None:
     """
     global verbosity
     verbosity = level
-    _configure_logging()
-
-def _configure_logging() -> None:
-    """Configure logging based on current settings."""
-    # Map verbosity levels to logging levels
-    log_levels = {
-        VerbosityLevel.SILENT: logging.ERROR,
-        VerbosityLevel.MINIMAL: logging.WARNING,
-        VerbosityLevel.NORMAL: logging.INFO,
-        VerbosityLevel.VERBOSE: logging.DEBUG,
-        VerbosityLevel.DEBUG: logging.DEBUG
-    }
-    
-    level = log_levels.get(verbosity, logging.INFO)
-    
-    # Reset existing handlers
-    root_logger = logging.getLogger()
-    for handler in root_logger.handlers[:]:
-        root_logger.removeHandler(handler)
-    
-    # Configure logging format
-    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    
-    # Add file handler if enabled
-    if _config["log_to_file"]:
-        file_handler = logging.FileHandler(_config["log_file"])
-        file_handler.setFormatter(logging.Formatter(log_format))
-        root_logger.addHandler(file_handler)
-    
-    # Add console handler (this will be replaced by Rich handler in main.py)
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(logging.Formatter(log_format))
-    root_logger.addHandler(console_handler)
-    
-    # Set the logging level
-    root_logger.setLevel(level)
+    configure_logging()
 
 def should_show(feature: str) -> bool:
     """
@@ -198,7 +171,7 @@ def get_service_url(service: str) -> str:
     return f"{base}:{port}"
 
 # Initialize logging configuration
-_configure_logging()
+configure_logging()
 
 # Load environment-based configuration
 if "SENTINEL_VERBOSITY" in os.environ:

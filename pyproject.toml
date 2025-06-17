@@ -28,6 +28,3 @@ dependencies = [
     "uvicorn>=0.34.3",
     "weave>=0.51.53",
 ]
-
-[tool.uv.sources]
-weave = { git = "https://github.com/wandb/weave.git" }
