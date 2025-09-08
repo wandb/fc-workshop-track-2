@@ -664,7 +664,7 @@ def create_crisis_manager_agent():
         tools=[],  # Manager agents cannot have tools in hierarchical process
         verbose=True,
         allow_delegation=True,  # Key: Enables hierarchical management
-        llm="gpt-4o"  # Use high-capability model for manager
+        llm="gemini-2.5-pro"  # Use high-capability model for manager
     )
     
     return crisis_manager

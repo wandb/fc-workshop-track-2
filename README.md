@@ -13,7 +13,7 @@ Build autonomous agents that coordinate across complex scenarios using CrewAI, e
 
 ### **Prerequisites**
 - Python 3.11+
-- OpenAI API key
+- Google API key (for Gemini models)
 - Weights & Biases account (for evaluation tracking)
 - Note: Tested with Linux and MacOS. Windows was not tested.
 
@@ -187,7 +187,7 @@ python -m ipykernel install --user --name=.venv
 ```
 
 ### **Requirements**
-- **API Limits**: OpenAI API with sufficient quota for ~100 LLM calls
+- **API Limits**: Google Gemini API with sufficient quota for ~100 LLM calls
 - **Network**: Stable connection for real-time service interaction
 
 ---

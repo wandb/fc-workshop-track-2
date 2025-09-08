@@ -859,10 +859,10 @@ dependencies = [
     { name = "crewai" },
     { name = "crewai-tools" },
     { name = "fastapi" },
+    { name = "google-genai" },
     { name = "ipykernel" },
     { name = "jupyter" },
     { name = "jupytext" },
-    { name = "langchain" },
     { name = "langchain-community" },
     { name = "langchain-openai" },
     { name = "litellm" },
@@ -885,10 +885,10 @@ requires-dist = [
     { name = "crewai", specifier = ">=0.126.0" },
     { name = "crewai-tools", specifier = ">=0.0.1" },
     { name = "fastapi", specifier = ">=0.115.9" },
+    { name = "google-genai", specifier = ">=1.33.0" },
     { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "jupytext", specifier = ">=1.17.2" },
-    { name = "langchain", specifier = ">=0.3.25" },
     { name = "langchain-community", specifier = ">=0.3.24" },
     { name = "langchain-openai", specifier = ">=0.3.21" },
     { name = "litellm", specifier = ">=1.68.0" },
@@ -1088,6 +1088,25 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/9e/9b/e92ef23b84fa10a64ce4831390b7a4c2e53c0132568d99d4ae61d04c8855/google_auth-2.40.3.tar.gz", hash = "sha256:500c3a29adedeb36ea9cf24b8d10858e152f2412e3ca37829b3fa18e33d63b77", size = 281029, upload-time = "2025-06-04T18:04:57.577Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/17/63/b19553b658a1692443c62bd07e5868adaa0ad746a0751ba62c59568cd45b/google_auth-2.40.3-py2.py3-none-any.whl", hash = "sha256:1370d4593e86213563547f97a92752fc658456fe4514c809544f330fed45a7ca", size = 216137, upload-time = "2025-06-04T18:04:55.573Z" },
+]
+
+[[package]]
+name = "google-genai"
+version = "1.33.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "google-auth" },
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "requests" },
+    { name = "tenacity" },
+    { name = "typing-extensions" },
+    { name = "websockets" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2d/f5/506221067750087ba1346f0a31f6e1714fda4b612d45a54cd2164750e05a/google_genai-1.33.0.tar.gz", hash = "sha256:7d3a5ebad712d95a0d1775842505886eb43cc52f9f478aa4ab0e2d25412499a2", size = 241006, upload-time = "2025-09-03T22:54:10.662Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/43/8e/55052fe488d6604309b425360beb72e6d65f11fa4cc1cdde17ccfe93e1bc/google_genai-1.33.0-py3-none-any.whl", hash = "sha256:1710e958af0a0f3d19521fabbefd86b22d1f212376103f18fed11c9d96fa48e8", size = 241753, upload-time = "2025-09-03T22:54:08.789Z" },
 ]
 
 [[package]]

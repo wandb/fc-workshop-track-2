@@ -3,7 +3,7 @@ import logging
 # Suppress LiteLLM debug logging
 logging.getLogger("LiteLLM").setLevel(logging.WARNING)
 logging.getLogger("litellm").setLevel(logging.WARNING)
-logging.getLogger("openai").setLevel(logging.WARNING)
+logging.getLogger("google-genai").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
 logging.getLogger("instructor").setLevel(logging.WARNING)

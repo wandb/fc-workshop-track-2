@@ -30,9 +30,9 @@ def check_environment():
     console.print("🔍 Checking environment setup...")
     
     # Check API keys
-    if not os.getenv('OPENAI_API_KEY'):
-        console.print("[red]❌ OpenAI API Key missing![/red]")
-        console.print("Add to .env file: OPENAI_API_KEY=your_key_here")
+    if not os.getenv('GEMINI_API_KEY'):
+        console.print("[red]❌ Google API Key missing![/red]")
+        console.print("Add to .env file: GEMINI_API_KEY=your_key_here")
         return False
     
     # Check packages
@@ -45,7 +45,7 @@ def check_environment():
     except ImportError as e:
         console.print(f"[red]❌ Missing package: {e}[/red]")
         console.print(
-            "Run: uv add crewai crewai-tools openai "
+            "Run: uv add crewai crewai-tools google-genai "
             "python-dotenv rich pydantic")
         return False
     
